@@ -1,0 +1,99 @@
+syntax = "proto3";
+package control_service;
+
+import "node.proto";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/struct.proto";
+
+option go_package = "github.com/philslol/kritis3m_scalev2/gen/go/v1";
+
+
+message Transaction{
+    int32 tx_id = 1;
+}
+
+message NodeUpdate{
+    NodeUpdateItem node_update_item = 1;
+    Transaction transaction = 2;
+}
+
+message NodeUpdateItem{
+    string serial_number = 1;
+    int32 network_index = 3;
+    string locality = 4;
+    string version_set_id = 5;
+    repeated node.HardwareConfig hardware_config = 6;
+    repeated GroupProxyUpdate group_proxy_update = 7;
+}
+message UpdateProxy{
+    string name = 1;
+    string server_endpoint_addr = 2;
+    string client_endpoint_addr = 3;
+    node.ProxyType proxy_type = 4;
+    
+}
+
+message GroupProxyUpdate{
+    string group_name = 1;
+    node.EndpointConfig endpoint_config = 2;
+    optional node.EndpointConfig legacy_config = 3;
+    int32 group_log_level = 4;
+    repeated UpdateProxy proxies = 5;
+}
+
+
+message FleetUpdate{
+    Transaction transaction = 1;
+    repeated NodeUpdateItem node_update_items = 2;
+}
+
+message UpdateResponse{
+    UpdateState update_state = 1;
+    google.protobuf.Timestamp timestamp = 2;
+    google.protobuf.Struct meta = 3;
+    int32 tx_id = 4;
+    string node_id = 5;
+}
+
+message FleetResponse{
+    UpdateState update_state = 1;
+    google.protobuf.Timestamp timestamp = 2;
+    string meta = 3;
+    int32 tx_id = 4;
+}
+
+enum UpdateState{
+    UPDATE_ERROR = 0;
+    UPDATE_ROLLBACK = 1;
+    UPDATE_APPLICABLE = 2;
+    UPDATE_APPLY_REQ = 3;
+    UPDATE_APPLIED = 4;
+    UPDATE_ACKNOWLEDGED = 5;
+    UPDATE_PUBLISHED = 6;
+}
+
+message HelloResponse{
+    string serial_number = 1;
+}
+
+service ControlPlane {
+    rpc UpdateNode(NodeUpdate) returns (stream UpdateResponse);
+    rpc UpdateFleet(FleetUpdate) returns (stream FleetResponse);
+
+    rpc hello(google.protobuf.Empty) returns (stream HelloResponse);
+    rpc log(google.protobuf.Empty) returns (stream LogResponse);
+
+}
+
+message LogResponse{
+    string message = 1;
+    string serial_number = 2;
+    optional int32 level =3;
+    optional string module = 4;
+}
+
+
+
+
