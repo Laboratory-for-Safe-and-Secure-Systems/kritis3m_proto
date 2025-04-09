@@ -4,9 +4,10 @@
 // 	protoc        v3.12.4
 // source: control_plane.proto
 
-package v1
+package control_plane
 
 import (
+	southbound "github.com/Laboratory-for-Safe-and-Secure-Systems/kritis3m_proto/southbound"
 	empty "github.com/golang/protobuf/ptypes/empty"
 	_struct "github.com/golang/protobuf/ptypes/struct"
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
@@ -182,13 +183,13 @@ func (x *NodeUpdate) GetTransaction() *Transaction {
 }
 
 type NodeUpdateItem struct {
-	state            protoimpl.MessageState `protogen:"open.v1"`
-	SerialNumber     string                 `protobuf:"bytes,1,opt,name=serial_number,json=serialNumber,proto3" json:"serial_number,omitempty"`
-	NetworkIndex     int32                  `protobuf:"varint,3,opt,name=network_index,json=networkIndex,proto3" json:"network_index,omitempty"`
-	Locality         string                 `protobuf:"bytes,4,opt,name=locality,proto3" json:"locality,omitempty"`
-	VersionSetId     string                 `protobuf:"bytes,5,opt,name=version_set_id,json=versionSetId,proto3" json:"version_set_id,omitempty"`
-	HardwareConfig   []*HardwareConfig      `protobuf:"bytes,6,rep,name=hardware_config,json=hardwareConfig,proto3" json:"hardware_config,omitempty"`
-	GroupProxyUpdate []*GroupProxyUpdate    `protobuf:"bytes,7,rep,name=group_proxy_update,json=groupProxyUpdate,proto3" json:"group_proxy_update,omitempty"`
+	state            protoimpl.MessageState       `protogen:"open.v1"`
+	SerialNumber     string                       `protobuf:"bytes,1,opt,name=serial_number,json=serialNumber,proto3" json:"serial_number,omitempty"`
+	NetworkIndex     int32                        `protobuf:"varint,3,opt,name=network_index,json=networkIndex,proto3" json:"network_index,omitempty"`
+	Locality         string                       `protobuf:"bytes,4,opt,name=locality,proto3" json:"locality,omitempty"`
+	VersionSetId     string                       `protobuf:"bytes,5,opt,name=version_set_id,json=versionSetId,proto3" json:"version_set_id,omitempty"`
+	HardwareConfig   []*southbound.HardwareConfig `protobuf:"bytes,6,rep,name=hardware_config,json=hardwareConfig,proto3" json:"hardware_config,omitempty"`
+	GroupProxyUpdate []*GroupProxyUpdate          `protobuf:"bytes,7,rep,name=group_proxy_update,json=groupProxyUpdate,proto3" json:"group_proxy_update,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -251,7 +252,7 @@ func (x *NodeUpdateItem) GetVersionSetId() string {
 	return ""
 }
 
-func (x *NodeUpdateItem) GetHardwareConfig() []*HardwareConfig {
+func (x *NodeUpdateItem) GetHardwareConfig() []*southbound.HardwareConfig {
 	if x != nil {
 		return x.HardwareConfig
 	}
@@ -270,7 +271,7 @@ type UpdateProxy struct {
 	Name               string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	ServerEndpointAddr string                 `protobuf:"bytes,2,opt,name=server_endpoint_addr,json=serverEndpointAddr,proto3" json:"server_endpoint_addr,omitempty"`
 	ClientEndpointAddr string                 `protobuf:"bytes,3,opt,name=client_endpoint_addr,json=clientEndpointAddr,proto3" json:"client_endpoint_addr,omitempty"`
-	ProxyType          ProxyType              `protobuf:"varint,4,opt,name=proxy_type,json=proxyType,proto3,enum=node.ProxyType" json:"proxy_type,omitempty"`
+	ProxyType          southbound.ProxyType   `protobuf:"varint,4,opt,name=proxy_type,json=proxyType,proto3,enum=node.ProxyType" json:"proxy_type,omitempty"`
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -326,20 +327,20 @@ func (x *UpdateProxy) GetClientEndpointAddr() string {
 	return ""
 }
 
-func (x *UpdateProxy) GetProxyType() ProxyType {
+func (x *UpdateProxy) GetProxyType() southbound.ProxyType {
 	if x != nil {
 		return x.ProxyType
 	}
-	return ProxyType_PROXY_TYPE_UNSPECIFIED
+	return southbound.ProxyType(0)
 }
 
 type GroupProxyUpdate struct {
-	state          protoimpl.MessageState `protogen:"open.v1"`
-	GroupName      string                 `protobuf:"bytes,1,opt,name=group_name,json=groupName,proto3" json:"group_name,omitempty"`
-	EndpointConfig *EndpointConfig        `protobuf:"bytes,2,opt,name=endpoint_config,json=endpointConfig,proto3" json:"endpoint_config,omitempty"`
-	LegacyConfig   *EndpointConfig        `protobuf:"bytes,3,opt,name=legacy_config,json=legacyConfig,proto3,oneof" json:"legacy_config,omitempty"`
-	GroupLogLevel  int32                  `protobuf:"varint,4,opt,name=group_log_level,json=groupLogLevel,proto3" json:"group_log_level,omitempty"`
-	Proxies        []*UpdateProxy         `protobuf:"bytes,5,rep,name=proxies,proto3" json:"proxies,omitempty"`
+	state          protoimpl.MessageState     `protogen:"open.v1"`
+	GroupName      string                     `protobuf:"bytes,1,opt,name=group_name,json=groupName,proto3" json:"group_name,omitempty"`
+	EndpointConfig *southbound.EndpointConfig `protobuf:"bytes,2,opt,name=endpoint_config,json=endpointConfig,proto3" json:"endpoint_config,omitempty"`
+	LegacyConfig   *southbound.EndpointConfig `protobuf:"bytes,3,opt,name=legacy_config,json=legacyConfig,proto3,oneof" json:"legacy_config,omitempty"`
+	GroupLogLevel  int32                      `protobuf:"varint,4,opt,name=group_log_level,json=groupLogLevel,proto3" json:"group_log_level,omitempty"`
+	Proxies        []*UpdateProxy             `protobuf:"bytes,5,rep,name=proxies,proto3" json:"proxies,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -381,14 +382,14 @@ func (x *GroupProxyUpdate) GetGroupName() string {
 	return ""
 }
 
-func (x *GroupProxyUpdate) GetEndpointConfig() *EndpointConfig {
+func (x *GroupProxyUpdate) GetEndpointConfig() *southbound.EndpointConfig {
 	if x != nil {
 		return x.EndpointConfig
 	}
 	return nil
 }
 
-func (x *GroupProxyUpdate) GetLegacyConfig() *EndpointConfig {
+func (x *GroupProxyUpdate) GetLegacyConfig() *southbound.EndpointConfig {
 	if x != nil {
 		return x.LegacyConfig
 	}
@@ -867,10 +868,12 @@ var file_control_plane_proto_rawDesc = string([]byte{
 	0x0a, 0x03, 0x6c, 0x6f, 0x67, 0x12, 0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70,
 	0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x1a, 0x1c, 0x2e,
 	0x63, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e,
-	0x4c, 0x6f, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x30, 0x01, 0x42, 0x30, 0x5a,
-	0x2e, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x70, 0x68, 0x69, 0x6c,
-	0x73, 0x6c, 0x6f, 0x6c, 0x2f, 0x6b, 0x72, 0x69, 0x74, 0x69, 0x73, 0x33, 0x6d, 0x5f, 0x73, 0x63,
-	0x61, 0x6c, 0x65, 0x76, 0x32, 0x2f, 0x67, 0x65, 0x6e, 0x2f, 0x67, 0x6f, 0x2f, 0x76, 0x31, 0x62,
+	0x4c, 0x6f, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x30, 0x01, 0x42, 0x50, 0x5a,
+	0x4e, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x4c, 0x61, 0x62, 0x6f,
+	0x72, 0x61, 0x74, 0x6f, 0x72, 0x79, 0x2d, 0x66, 0x6f, 0x72, 0x2d, 0x53, 0x61, 0x66, 0x65, 0x2d,
+	0x61, 0x6e, 0x64, 0x2d, 0x53, 0x65, 0x63, 0x75, 0x72, 0x65, 0x2d, 0x53, 0x79, 0x73, 0x74, 0x65,
+	0x6d, 0x73, 0x2f, 0x6b, 0x72, 0x69, 0x74, 0x69, 0x73, 0x33, 0x6d, 0x5f, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x2f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x5f, 0x70, 0x6c, 0x61, 0x6e, 0x65, 0x62,
 	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 })
 
@@ -889,23 +892,23 @@ func file_control_plane_proto_rawDescGZIP() []byte {
 var file_control_plane_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_control_plane_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_control_plane_proto_goTypes = []any{
-	(UpdateState)(0),            // 0: control_service.UpdateState
-	(*Transaction)(nil),         // 1: control_service.Transaction
-	(*NodeUpdate)(nil),          // 2: control_service.NodeUpdate
-	(*NodeUpdateItem)(nil),      // 3: control_service.NodeUpdateItem
-	(*UpdateProxy)(nil),         // 4: control_service.UpdateProxy
-	(*GroupProxyUpdate)(nil),    // 5: control_service.GroupProxyUpdate
-	(*FleetUpdate)(nil),         // 6: control_service.FleetUpdate
-	(*UpdateResponse)(nil),      // 7: control_service.UpdateResponse
-	(*FleetResponse)(nil),       // 8: control_service.FleetResponse
-	(*HelloResponse)(nil),       // 9: control_service.HelloResponse
-	(*LogResponse)(nil),         // 10: control_service.LogResponse
-	(*HardwareConfig)(nil),      // 11: node.HardwareConfig
-	(ProxyType)(0),              // 12: node.ProxyType
-	(*EndpointConfig)(nil),      // 13: node.EndpointConfig
-	(*timestamp.Timestamp)(nil), // 14: google.protobuf.Timestamp
-	(*_struct.Struct)(nil),      // 15: google.protobuf.Struct
-	(*empty.Empty)(nil),         // 16: google.protobuf.Empty
+	(UpdateState)(0),                  // 0: control_service.UpdateState
+	(*Transaction)(nil),               // 1: control_service.Transaction
+	(*NodeUpdate)(nil),                // 2: control_service.NodeUpdate
+	(*NodeUpdateItem)(nil),            // 3: control_service.NodeUpdateItem
+	(*UpdateProxy)(nil),               // 4: control_service.UpdateProxy
+	(*GroupProxyUpdate)(nil),          // 5: control_service.GroupProxyUpdate
+	(*FleetUpdate)(nil),               // 6: control_service.FleetUpdate
+	(*UpdateResponse)(nil),            // 7: control_service.UpdateResponse
+	(*FleetResponse)(nil),             // 8: control_service.FleetResponse
+	(*HelloResponse)(nil),             // 9: control_service.HelloResponse
+	(*LogResponse)(nil),               // 10: control_service.LogResponse
+	(*southbound.HardwareConfig)(nil), // 11: node.HardwareConfig
+	(southbound.ProxyType)(0),         // 12: node.ProxyType
+	(*southbound.EndpointConfig)(nil), // 13: node.EndpointConfig
+	(*timestamp.Timestamp)(nil),       // 14: google.protobuf.Timestamp
+	(*_struct.Struct)(nil),            // 15: google.protobuf.Struct
+	(*empty.Empty)(nil),               // 16: google.protobuf.Empty
 }
 var file_control_plane_proto_depIdxs = []int32{
 	3,  // 0: control_service.NodeUpdate.node_update_item:type_name -> control_service.NodeUpdateItem
@@ -943,7 +946,6 @@ func file_control_plane_proto_init() {
 	if File_control_plane_proto != nil {
 		return
 	}
-	file_node_proto_init()
 	file_control_plane_proto_msgTypes[4].OneofWrappers = []any{}
 	file_control_plane_proto_msgTypes[9].OneofWrappers = []any{}
 	type x struct{}

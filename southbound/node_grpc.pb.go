@@ -4,7 +4,7 @@
 // - protoc             v3.12.4
 // source: node.proto
 
-package v1
+package southbound
 
 import (
 	context "context"

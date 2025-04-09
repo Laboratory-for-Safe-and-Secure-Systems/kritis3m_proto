@@ -4,7 +4,7 @@
 // - protoc             v3.12.4
 // source: control_plane.proto
 
-package v1
+package control_plane
 
 import (
 	context "context"

@@ -7,7 +7,7 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/struct.proto";
 
-option go_package = "github.com/philslol/kritis3m_scalev2/gen/go/v1";
+option go_package = "github.com/Laboratory-for-Safe-and-Secure-Systems/kritis3m_proto/control_plane";
 
 
 message Transaction{

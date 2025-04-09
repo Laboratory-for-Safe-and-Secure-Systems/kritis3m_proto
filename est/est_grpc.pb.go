@@ -4,7 +4,7 @@
 // - protoc             v3.12.4
 // source: est.proto
 
-package v1
+package est
 
 import (
 	context "context"
