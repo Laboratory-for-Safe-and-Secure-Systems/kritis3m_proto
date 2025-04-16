@@ -20,10 +20,11 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ControlPlane_UpdateNode_FullMethodName  = "/control_service.ControlPlane/UpdateNode"
-	ControlPlane_UpdateFleet_FullMethodName = "/control_service.ControlPlane/UpdateFleet"
-	ControlPlane_Hello_FullMethodName       = "/control_service.ControlPlane/hello"
-	ControlPlane_Log_FullMethodName         = "/control_service.ControlPlane/log"
+	ControlPlane_UpdateNode_FullMethodName             = "/control_service.ControlPlane/UpdateNode"
+	ControlPlane_UpdateFleet_FullMethodName            = "/control_service.ControlPlane/UpdateFleet"
+	ControlPlane_SendCertificateRequest_FullMethodName = "/control_service.ControlPlane/SendCertificateRequest"
+	ControlPlane_Hello_FullMethodName                  = "/control_service.ControlPlane/hello"
+	ControlPlane_Log_FullMethodName                    = "/control_service.ControlPlane/log"
 )
 
 // ControlPlaneClient is the client API for ControlPlane service.
@@ -32,6 +33,7 @@ const (
 type ControlPlaneClient interface {
 	UpdateNode(ctx context.Context, in *NodeUpdate, opts ...grpc.CallOption) (grpc.ServerStreamingClient[UpdateResponse], error)
 	UpdateFleet(ctx context.Context, in *FleetUpdate, opts ...grpc.CallOption) (grpc.ServerStreamingClient[FleetResponse], error)
+	SendCertificateRequest(ctx context.Context, in *CertificateRequest, opts ...grpc.CallOption) (*CertificateResponse, error)
 	Hello(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (grpc.ServerStreamingClient[HelloResponse], error)
 	Log(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (grpc.ServerStreamingClient[LogResponse], error)
 }
@@ -82,6 +84,16 @@ func (c *controlPlaneClient) UpdateFleet(ctx context.Context, in *FleetUpdate, o
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type ControlPlane_UpdateFleetClient = grpc.ServerStreamingClient[FleetResponse]
 
+func (c *controlPlaneClient) SendCertificateRequest(ctx context.Context, in *CertificateRequest, opts ...grpc.CallOption) (*CertificateResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CertificateResponse)
+	err := c.cc.Invoke(ctx, ControlPlane_SendCertificateRequest_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *controlPlaneClient) Hello(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (grpc.ServerStreamingClient[HelloResponse], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	stream, err := c.cc.NewStream(ctx, &ControlPlane_ServiceDesc.Streams[2], ControlPlane_Hello_FullMethodName, cOpts...)
@@ -126,6 +138,7 @@ type ControlPlane_LogClient = grpc.ServerStreamingClient[LogResponse]
 type ControlPlaneServer interface {
 	UpdateNode(*NodeUpdate, grpc.ServerStreamingServer[UpdateResponse]) error
 	UpdateFleet(*FleetUpdate, grpc.ServerStreamingServer[FleetResponse]) error
+	SendCertificateRequest(context.Context, *CertificateRequest) (*CertificateResponse, error)
 	Hello(*empty.Empty, grpc.ServerStreamingServer[HelloResponse]) error
 	Log(*empty.Empty, grpc.ServerStreamingServer[LogResponse]) error
 	mustEmbedUnimplementedControlPlaneServer()
@@ -143,6 +156,9 @@ func (UnimplementedControlPlaneServer) UpdateNode(*NodeUpdate, grpc.ServerStream
 }
 func (UnimplementedControlPlaneServer) UpdateFleet(*FleetUpdate, grpc.ServerStreamingServer[FleetResponse]) error {
 	return status.Errorf(codes.Unimplemented, "method UpdateFleet not implemented")
+}
+func (UnimplementedControlPlaneServer) SendCertificateRequest(context.Context, *CertificateRequest) (*CertificateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendCertificateRequest not implemented")
 }
 func (UnimplementedControlPlaneServer) Hello(*empty.Empty, grpc.ServerStreamingServer[HelloResponse]) error {
 	return status.Errorf(codes.Unimplemented, "method Hello not implemented")
@@ -193,6 +209,24 @@ func _ControlPlane_UpdateFleet_Handler(srv interface{}, stream grpc.ServerStream
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type ControlPlane_UpdateFleetServer = grpc.ServerStreamingServer[FleetResponse]
 
+func _ControlPlane_SendCertificateRequest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CertificateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ControlPlaneServer).SendCertificateRequest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ControlPlane_SendCertificateRequest_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ControlPlaneServer).SendCertificateRequest(ctx, req.(*CertificateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ControlPlane_Hello_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(empty.Empty)
 	if err := stream.RecvMsg(m); err != nil {
@@ -221,7 +255,12 @@ type ControlPlane_LogServer = grpc.ServerStreamingServer[LogResponse]
 var ControlPlane_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "control_service.ControlPlane",
 	HandlerType: (*ControlPlaneServer)(nil),
-	Methods:     []grpc.MethodDesc{},
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "SendCertificateRequest",
+			Handler:    _ControlPlane_SendCertificateRequest_Handler,
+		},
+	},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "UpdateNode",

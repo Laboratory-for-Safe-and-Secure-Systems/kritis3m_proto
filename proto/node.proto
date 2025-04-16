@@ -48,6 +48,23 @@ service Southbound{
 
   rpc ActivateFleet(ActivateFleetRequest) returns (ActivateResponse);
   rpc ActivateNode(ActivateNodeRequest) returns (ActivateResponse);
+
+  rpc TriggerCertReq(TriggerCertReqRequest) returns (TriggerCertReqResponse);
+}
+
+enum CertType{
+  CERT_TYPE_UNSPECIFIED = 0;
+    DATAPLANE= 1;
+    CONTROLPLANE = 2;
+}
+
+message TriggerCertReqRequest{
+  string serial_number = 1;
+  CertType cert_type = 2;
+}
+
+message TriggerCertReqResponse{
+  int32 retcode = 1;
 }
 
 message ActivateNodeRequest{

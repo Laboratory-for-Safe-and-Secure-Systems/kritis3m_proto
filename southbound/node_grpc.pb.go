@@ -52,6 +52,7 @@ const (
 	Southbound_DeleteProxy_FullMethodName          = "/node.Southbound/DeleteProxy"
 	Southbound_ActivateFleet_FullMethodName        = "/node.Southbound/ActivateFleet"
 	Southbound_ActivateNode_FullMethodName         = "/node.Southbound/ActivateNode"
+	Southbound_TriggerCertReq_FullMethodName       = "/node.Southbound/TriggerCertReq"
 )
 
 // SouthboundClient is the client API for Southbound service.
@@ -90,6 +91,7 @@ type SouthboundClient interface {
 	DeleteProxy(ctx context.Context, in *DeleteProxyRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	ActivateFleet(ctx context.Context, in *ActivateFleetRequest, opts ...grpc.CallOption) (*ActivateResponse, error)
 	ActivateNode(ctx context.Context, in *ActivateNodeRequest, opts ...grpc.CallOption) (*ActivateResponse, error)
+	TriggerCertReq(ctx context.Context, in *TriggerCertReqRequest, opts ...grpc.CallOption) (*TriggerCertReqResponse, error)
 }
 
 type southboundClient struct {
@@ -420,6 +422,16 @@ func (c *southboundClient) ActivateNode(ctx context.Context, in *ActivateNodeReq
 	return out, nil
 }
 
+func (c *southboundClient) TriggerCertReq(ctx context.Context, in *TriggerCertReqRequest, opts ...grpc.CallOption) (*TriggerCertReqResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TriggerCertReqResponse)
+	err := c.cc.Invoke(ctx, Southbound_TriggerCertReq_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SouthboundServer is the server API for Southbound service.
 // All implementations must embed UnimplementedSouthboundServer
 // for forward compatibility.
@@ -456,6 +468,7 @@ type SouthboundServer interface {
 	DeleteProxy(context.Context, *DeleteProxyRequest) (*empty.Empty, error)
 	ActivateFleet(context.Context, *ActivateFleetRequest) (*ActivateResponse, error)
 	ActivateNode(context.Context, *ActivateNodeRequest) (*ActivateResponse, error)
+	TriggerCertReq(context.Context, *TriggerCertReqRequest) (*TriggerCertReqResponse, error)
 	mustEmbedUnimplementedSouthboundServer()
 }
 
@@ -561,6 +574,9 @@ func (UnimplementedSouthboundServer) ActivateFleet(context.Context, *ActivateFle
 }
 func (UnimplementedSouthboundServer) ActivateNode(context.Context, *ActivateNodeRequest) (*ActivateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ActivateNode not implemented")
+}
+func (UnimplementedSouthboundServer) TriggerCertReq(context.Context, *TriggerCertReqRequest) (*TriggerCertReqResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TriggerCertReq not implemented")
 }
 func (UnimplementedSouthboundServer) mustEmbedUnimplementedSouthboundServer() {}
 func (UnimplementedSouthboundServer) testEmbeddedByValue()                    {}
@@ -1159,6 +1175,24 @@ func _Southbound_ActivateNode_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Southbound_TriggerCertReq_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TriggerCertReqRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SouthboundServer).TriggerCertReq(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Southbound_TriggerCertReq_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SouthboundServer).TriggerCertReq(ctx, req.(*TriggerCertReqRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Southbound_ServiceDesc is the grpc.ServiceDesc for Southbound service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1293,6 +1327,10 @@ var Southbound_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ActivateNode",
 			Handler:    _Southbound_ActivateNode_Handler,
+		},
+		{
+			MethodName: "TriggerCertReq",
+			Handler:    _Southbound_TriggerCertReq_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
