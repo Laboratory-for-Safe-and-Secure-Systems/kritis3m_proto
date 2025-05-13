@@ -77,12 +77,15 @@ enum UpdateState{
 message CertificateRequest{
     string serial_number = 1;
     node.CertType cert_type = 2;
+    
 
     string host_name = 3;
     string ip_addr = 4;
 
     uint32 port = 5;
 
+    optional string algo=6;
+    optional string alt_algo=7;
 }
 
 message CertificateResponse{
