@@ -336,6 +336,118 @@ func (x *TriggerCertReqRequest) GetAltAlgo() string {
 	return ""
 }
 
+type TriggerFleetCertRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	VersionSetId  string                 `protobuf:"bytes,1,opt,name=version_set_id,json=versionSetId,proto3" json:"version_set_id,omitempty"`
+	CertType      CertType               `protobuf:"varint,2,opt,name=cert_type,json=certType,proto3,enum=node.CertType" json:"cert_type,omitempty"`
+	Algo          *string                `protobuf:"bytes,3,opt,name=algo,proto3,oneof" json:"algo,omitempty"`
+	AltAlgo       *string                `protobuf:"bytes,4,opt,name=alt_algo,json=altAlgo,proto3,oneof" json:"alt_algo,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TriggerFleetCertRequest) Reset() {
+	*x = TriggerFleetCertRequest{}
+	mi := &file_node_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TriggerFleetCertRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TriggerFleetCertRequest) ProtoMessage() {}
+
+func (x *TriggerFleetCertRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_node_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TriggerFleetCertRequest.ProtoReflect.Descriptor instead.
+func (*TriggerFleetCertRequest) Descriptor() ([]byte, []int) {
+	return file_node_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *TriggerFleetCertRequest) GetVersionSetId() string {
+	if x != nil {
+		return x.VersionSetId
+	}
+	return ""
+}
+
+func (x *TriggerFleetCertRequest) GetCertType() CertType {
+	if x != nil {
+		return x.CertType
+	}
+	return CertType_CERT_TYPE_UNSPECIFIED
+}
+
+func (x *TriggerFleetCertRequest) GetAlgo() string {
+	if x != nil && x.Algo != nil {
+		return *x.Algo
+	}
+	return ""
+}
+
+func (x *TriggerFleetCertRequest) GetAltAlgo() string {
+	if x != nil && x.AltAlgo != nil {
+		return *x.AltAlgo
+	}
+	return ""
+}
+
+type TriggerFleetCertReqResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Retcode       int32                  `protobuf:"varint,1,opt,name=retcode,proto3" json:"retcode,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TriggerFleetCertReqResponse) Reset() {
+	*x = TriggerFleetCertReqResponse{}
+	mi := &file_node_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TriggerFleetCertReqResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TriggerFleetCertReqResponse) ProtoMessage() {}
+
+func (x *TriggerFleetCertReqResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_node_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TriggerFleetCertReqResponse.ProtoReflect.Descriptor instead.
+func (*TriggerFleetCertReqResponse) Descriptor() ([]byte, []int) {
+	return file_node_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *TriggerFleetCertReqResponse) GetRetcode() int32 {
+	if x != nil {
+		return x.Retcode
+	}
+	return 0
+}
+
 type TriggerCertReqResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Retcode       int32                  `protobuf:"varint,1,opt,name=retcode,proto3" json:"retcode,omitempty"`
@@ -345,7 +457,7 @@ type TriggerCertReqResponse struct {
 
 func (x *TriggerCertReqResponse) Reset() {
 	*x = TriggerCertReqResponse{}
-	mi := &file_node_proto_msgTypes[1]
+	mi := &file_node_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -357,7 +469,7 @@ func (x *TriggerCertReqResponse) String() string {
 func (*TriggerCertReqResponse) ProtoMessage() {}
 
 func (x *TriggerCertReqResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[1]
+	mi := &file_node_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -370,7 +482,7 @@ func (x *TriggerCertReqResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TriggerCertReqResponse.ProtoReflect.Descriptor instead.
 func (*TriggerCertReqResponse) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{1}
+	return file_node_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *TriggerCertReqResponse) GetRetcode() int32 {
@@ -390,7 +502,7 @@ type ActivateNodeRequest struct {
 
 func (x *ActivateNodeRequest) Reset() {
 	*x = ActivateNodeRequest{}
-	mi := &file_node_proto_msgTypes[2]
+	mi := &file_node_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -402,7 +514,7 @@ func (x *ActivateNodeRequest) String() string {
 func (*ActivateNodeRequest) ProtoMessage() {}
 
 func (x *ActivateNodeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[2]
+	mi := &file_node_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -415,7 +527,7 @@ func (x *ActivateNodeRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ActivateNodeRequest.ProtoReflect.Descriptor instead.
 func (*ActivateNodeRequest) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{2}
+	return file_node_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *ActivateNodeRequest) GetVersionSetId() string {
@@ -442,7 +554,7 @@ type ActivateFleetRequest struct {
 
 func (x *ActivateFleetRequest) Reset() {
 	*x = ActivateFleetRequest{}
-	mi := &file_node_proto_msgTypes[3]
+	mi := &file_node_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -454,7 +566,7 @@ func (x *ActivateFleetRequest) String() string {
 func (*ActivateFleetRequest) ProtoMessage() {}
 
 func (x *ActivateFleetRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[3]
+	mi := &file_node_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -467,7 +579,7 @@ func (x *ActivateFleetRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ActivateFleetRequest.ProtoReflect.Descriptor instead.
 func (*ActivateFleetRequest) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{3}
+	return file_node_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *ActivateFleetRequest) GetVersionSetId() string {
@@ -494,7 +606,7 @@ type ActivateResponse struct {
 
 func (x *ActivateResponse) Reset() {
 	*x = ActivateResponse{}
-	mi := &file_node_proto_msgTypes[4]
+	mi := &file_node_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -506,7 +618,7 @@ func (x *ActivateResponse) String() string {
 func (*ActivateResponse) ProtoMessage() {}
 
 func (x *ActivateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[4]
+	mi := &file_node_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -519,7 +631,7 @@ func (x *ActivateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ActivateResponse.ProtoReflect.Descriptor instead.
 func (*ActivateResponse) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{4}
+	return file_node_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *ActivateResponse) GetRetcode() int32 {
@@ -550,7 +662,7 @@ type Node struct {
 
 func (x *Node) Reset() {
 	*x = Node{}
-	mi := &file_node_proto_msgTypes[5]
+	mi := &file_node_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -562,7 +674,7 @@ func (x *Node) String() string {
 func (*Node) ProtoMessage() {}
 
 func (x *Node) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[5]
+	mi := &file_node_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -575,7 +687,7 @@ func (x *Node) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Node.ProtoReflect.Descriptor instead.
 func (*Node) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{5}
+	return file_node_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *Node) GetId() int32 {
@@ -631,7 +743,7 @@ type NodeResponse struct {
 
 func (x *NodeResponse) Reset() {
 	*x = NodeResponse{}
-	mi := &file_node_proto_msgTypes[6]
+	mi := &file_node_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -643,7 +755,7 @@ func (x *NodeResponse) String() string {
 func (*NodeResponse) ProtoMessage() {}
 
 func (x *NodeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[6]
+	mi := &file_node_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -656,7 +768,7 @@ func (x *NodeResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use NodeResponse.ProtoReflect.Descriptor instead.
 func (*NodeResponse) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{6}
+	return file_node_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *NodeResponse) GetNode() *Node {
@@ -693,7 +805,7 @@ type CreateNodeRequest struct {
 
 func (x *CreateNodeRequest) Reset() {
 	*x = CreateNodeRequest{}
-	mi := &file_node_proto_msgTypes[7]
+	mi := &file_node_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -705,7 +817,7 @@ func (x *CreateNodeRequest) String() string {
 func (*CreateNodeRequest) ProtoMessage() {}
 
 func (x *CreateNodeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[7]
+	mi := &file_node_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -718,7 +830,7 @@ func (x *CreateNodeRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateNodeRequest.ProtoReflect.Descriptor instead.
 func (*CreateNodeRequest) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{7}
+	return file_node_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *CreateNodeRequest) GetSerialNumber() string {
@@ -766,7 +878,7 @@ type NodeNameQuery struct {
 
 func (x *NodeNameQuery) Reset() {
 	*x = NodeNameQuery{}
-	mi := &file_node_proto_msgTypes[8]
+	mi := &file_node_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -778,7 +890,7 @@ func (x *NodeNameQuery) String() string {
 func (*NodeNameQuery) ProtoMessage() {}
 
 func (x *NodeNameQuery) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[8]
+	mi := &file_node_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -791,7 +903,7 @@ func (x *NodeNameQuery) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use NodeNameQuery.ProtoReflect.Descriptor instead.
 func (*NodeNameQuery) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{8}
+	return file_node_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *NodeNameQuery) GetVersionSetId() string {
@@ -822,7 +934,7 @@ type GetNodeRequest struct {
 
 func (x *GetNodeRequest) Reset() {
 	*x = GetNodeRequest{}
-	mi := &file_node_proto_msgTypes[9]
+	mi := &file_node_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -834,7 +946,7 @@ func (x *GetNodeRequest) String() string {
 func (*GetNodeRequest) ProtoMessage() {}
 
 func (x *GetNodeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[9]
+	mi := &file_node_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -847,7 +959,7 @@ func (x *GetNodeRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetNodeRequest.ProtoReflect.Descriptor instead.
 func (*GetNodeRequest) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{9}
+	return file_node_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *GetNodeRequest) GetQuery() isGetNodeRequest_Query {
@@ -908,7 +1020,7 @@ type ListNodesRequest struct {
 
 func (x *ListNodesRequest) Reset() {
 	*x = ListNodesRequest{}
-	mi := &file_node_proto_msgTypes[10]
+	mi := &file_node_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -920,7 +1032,7 @@ func (x *ListNodesRequest) String() string {
 func (*ListNodesRequest) ProtoMessage() {}
 
 func (x *ListNodesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[10]
+	mi := &file_node_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -933,7 +1045,7 @@ func (x *ListNodesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListNodesRequest.ProtoReflect.Descriptor instead.
 func (*ListNodesRequest) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{10}
+	return file_node_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *ListNodesRequest) GetVersionSetId() string {
@@ -959,7 +1071,7 @@ type ListNodesResponse struct {
 
 func (x *ListNodesResponse) Reset() {
 	*x = ListNodesResponse{}
-	mi := &file_node_proto_msgTypes[11]
+	mi := &file_node_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -971,7 +1083,7 @@ func (x *ListNodesResponse) String() string {
 func (*ListNodesResponse) ProtoMessage() {}
 
 func (x *ListNodesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[11]
+	mi := &file_node_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -984,7 +1096,7 @@ func (x *ListNodesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListNodesResponse.ProtoReflect.Descriptor instead.
 func (*ListNodesResponse) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{11}
+	return file_node_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *ListNodesResponse) GetNodes() []*NodeResponse {
@@ -1010,7 +1122,7 @@ type UpdateNodeRequest struct {
 
 func (x *UpdateNodeRequest) Reset() {
 	*x = UpdateNodeRequest{}
-	mi := &file_node_proto_msgTypes[12]
+	mi := &file_node_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1022,7 +1134,7 @@ func (x *UpdateNodeRequest) String() string {
 func (*UpdateNodeRequest) ProtoMessage() {}
 
 func (x *UpdateNodeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[12]
+	mi := &file_node_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1035,7 +1147,7 @@ func (x *UpdateNodeRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateNodeRequest.ProtoReflect.Descriptor instead.
 func (*UpdateNodeRequest) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{12}
+	return file_node_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *UpdateNodeRequest) GetQuery() isUpdateNodeRequest_Query {
@@ -1110,7 +1222,7 @@ type DeleteNodeRequest struct {
 
 func (x *DeleteNodeRequest) Reset() {
 	*x = DeleteNodeRequest{}
-	mi := &file_node_proto_msgTypes[13]
+	mi := &file_node_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1122,7 +1234,7 @@ func (x *DeleteNodeRequest) String() string {
 func (*DeleteNodeRequest) ProtoMessage() {}
 
 func (x *DeleteNodeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[13]
+	mi := &file_node_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1135,7 +1247,7 @@ func (x *DeleteNodeRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteNodeRequest.ProtoReflect.Descriptor instead.
 func (*DeleteNodeRequest) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{13}
+	return file_node_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *DeleteNodeRequest) GetSerialNumber() string {
@@ -1170,7 +1282,7 @@ type EndpointConfig struct {
 
 func (x *EndpointConfig) Reset() {
 	*x = EndpointConfig{}
-	mi := &file_node_proto_msgTypes[14]
+	mi := &file_node_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1182,7 +1294,7 @@ func (x *EndpointConfig) String() string {
 func (*EndpointConfig) ProtoMessage() {}
 
 func (x *EndpointConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[14]
+	mi := &file_node_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1195,7 +1307,7 @@ func (x *EndpointConfig) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EndpointConfig.ProtoReflect.Descriptor instead.
 func (*EndpointConfig) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{14}
+	return file_node_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *EndpointConfig) GetId() int32 {
@@ -1271,7 +1383,7 @@ type EndpointConfigNameQuery struct {
 
 func (x *EndpointConfigNameQuery) Reset() {
 	*x = EndpointConfigNameQuery{}
-	mi := &file_node_proto_msgTypes[15]
+	mi := &file_node_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1283,7 +1395,7 @@ func (x *EndpointConfigNameQuery) String() string {
 func (*EndpointConfigNameQuery) ProtoMessage() {}
 
 func (x *EndpointConfigNameQuery) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[15]
+	mi := &file_node_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1296,7 +1408,7 @@ func (x *EndpointConfigNameQuery) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EndpointConfigNameQuery.ProtoReflect.Descriptor instead.
 func (*EndpointConfigNameQuery) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{15}
+	return file_node_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *EndpointConfigNameQuery) GetVersionSetId() string {
@@ -1328,7 +1440,7 @@ type CreateEndpointConfigRequest struct {
 
 func (x *CreateEndpointConfigRequest) Reset() {
 	*x = CreateEndpointConfigRequest{}
-	mi := &file_node_proto_msgTypes[16]
+	mi := &file_node_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1340,7 +1452,7 @@ func (x *CreateEndpointConfigRequest) String() string {
 func (*CreateEndpointConfigRequest) ProtoMessage() {}
 
 func (x *CreateEndpointConfigRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[16]
+	mi := &file_node_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1353,7 +1465,7 @@ func (x *CreateEndpointConfigRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateEndpointConfigRequest.ProtoReflect.Descriptor instead.
 func (*CreateEndpointConfigRequest) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{16}
+	return file_node_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *CreateEndpointConfigRequest) GetName() string {
@@ -1418,7 +1530,7 @@ type GetEndpointConfigRequest struct {
 
 func (x *GetEndpointConfigRequest) Reset() {
 	*x = GetEndpointConfigRequest{}
-	mi := &file_node_proto_msgTypes[17]
+	mi := &file_node_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1430,7 +1542,7 @@ func (x *GetEndpointConfigRequest) String() string {
 func (*GetEndpointConfigRequest) ProtoMessage() {}
 
 func (x *GetEndpointConfigRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[17]
+	mi := &file_node_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1443,7 +1555,7 @@ func (x *GetEndpointConfigRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetEndpointConfigRequest.ProtoReflect.Descriptor instead.
 func (*GetEndpointConfigRequest) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{17}
+	return file_node_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *GetEndpointConfigRequest) GetQuery() isGetEndpointConfigRequest_Query {
@@ -1496,7 +1608,7 @@ type ListEndpointConfigsRequest struct {
 
 func (x *ListEndpointConfigsRequest) Reset() {
 	*x = ListEndpointConfigsRequest{}
-	mi := &file_node_proto_msgTypes[18]
+	mi := &file_node_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1508,7 +1620,7 @@ func (x *ListEndpointConfigsRequest) String() string {
 func (*ListEndpointConfigsRequest) ProtoMessage() {}
 
 func (x *ListEndpointConfigsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[18]
+	mi := &file_node_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1521,7 +1633,7 @@ func (x *ListEndpointConfigsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListEndpointConfigsRequest.ProtoReflect.Descriptor instead.
 func (*ListEndpointConfigsRequest) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{18}
+	return file_node_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *ListEndpointConfigsRequest) GetVersionSetId() string {
@@ -1540,7 +1652,7 @@ type ListEndpointConfigsResponse struct {
 
 func (x *ListEndpointConfigsResponse) Reset() {
 	*x = ListEndpointConfigsResponse{}
-	mi := &file_node_proto_msgTypes[19]
+	mi := &file_node_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1552,7 +1664,7 @@ func (x *ListEndpointConfigsResponse) String() string {
 func (*ListEndpointConfigsResponse) ProtoMessage() {}
 
 func (x *ListEndpointConfigsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[19]
+	mi := &file_node_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1565,7 +1677,7 @@ func (x *ListEndpointConfigsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListEndpointConfigsResponse.ProtoReflect.Descriptor instead.
 func (*ListEndpointConfigsResponse) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{19}
+	return file_node_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *ListEndpointConfigsResponse) GetConfigs() []*EndpointConfig {
@@ -1593,7 +1705,7 @@ type UpdateEndpointConfigRequest struct {
 
 func (x *UpdateEndpointConfigRequest) Reset() {
 	*x = UpdateEndpointConfigRequest{}
-	mi := &file_node_proto_msgTypes[20]
+	mi := &file_node_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1605,7 +1717,7 @@ func (x *UpdateEndpointConfigRequest) String() string {
 func (*UpdateEndpointConfigRequest) ProtoMessage() {}
 
 func (x *UpdateEndpointConfigRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[20]
+	mi := &file_node_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1618,7 +1730,7 @@ func (x *UpdateEndpointConfigRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateEndpointConfigRequest.ProtoReflect.Descriptor instead.
 func (*UpdateEndpointConfigRequest) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{20}
+	return file_node_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *UpdateEndpointConfigRequest) GetQuery() isUpdateEndpointConfigRequest_Query {
@@ -1706,7 +1818,7 @@ type DeleteEndpointConfigRequest struct {
 
 func (x *DeleteEndpointConfigRequest) Reset() {
 	*x = DeleteEndpointConfigRequest{}
-	mi := &file_node_proto_msgTypes[21]
+	mi := &file_node_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1718,7 +1830,7 @@ func (x *DeleteEndpointConfigRequest) String() string {
 func (*DeleteEndpointConfigRequest) ProtoMessage() {}
 
 func (x *DeleteEndpointConfigRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[21]
+	mi := &file_node_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1731,7 +1843,7 @@ func (x *DeleteEndpointConfigRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteEndpointConfigRequest.ProtoReflect.Descriptor instead.
 func (*DeleteEndpointConfigRequest) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{21}
+	return file_node_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *DeleteEndpointConfigRequest) GetId() int32 {
@@ -1757,7 +1869,7 @@ type Group struct {
 
 func (x *Group) Reset() {
 	*x = Group{}
-	mi := &file_node_proto_msgTypes[22]
+	mi := &file_node_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1769,7 +1881,7 @@ func (x *Group) String() string {
 func (*Group) ProtoMessage() {}
 
 func (x *Group) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[22]
+	mi := &file_node_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1782,7 +1894,7 @@ func (x *Group) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Group.ProtoReflect.Descriptor instead.
 func (*Group) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{22}
+	return file_node_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *Group) GetId() int32 {
@@ -1855,7 +1967,7 @@ type CreateGroupRequest struct {
 
 func (x *CreateGroupRequest) Reset() {
 	*x = CreateGroupRequest{}
-	mi := &file_node_proto_msgTypes[23]
+	mi := &file_node_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1867,7 +1979,7 @@ func (x *CreateGroupRequest) String() string {
 func (*CreateGroupRequest) ProtoMessage() {}
 
 func (x *CreateGroupRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[23]
+	mi := &file_node_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1880,7 +1992,7 @@ func (x *CreateGroupRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateGroupRequest.ProtoReflect.Descriptor instead.
 func (*CreateGroupRequest) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{23}
+	return file_node_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *CreateGroupRequest) GetName() string {
@@ -1935,7 +2047,7 @@ type GroupNameQuery struct {
 
 func (x *GroupNameQuery) Reset() {
 	*x = GroupNameQuery{}
-	mi := &file_node_proto_msgTypes[24]
+	mi := &file_node_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1947,7 +2059,7 @@ func (x *GroupNameQuery) String() string {
 func (*GroupNameQuery) ProtoMessage() {}
 
 func (x *GroupNameQuery) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[24]
+	mi := &file_node_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1960,7 +2072,7 @@ func (x *GroupNameQuery) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GroupNameQuery.ProtoReflect.Descriptor instead.
 func (*GroupNameQuery) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{24}
+	return file_node_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *GroupNameQuery) GetVersionSetId() string {
@@ -1992,7 +2104,7 @@ type GetGroupRequest struct {
 
 func (x *GetGroupRequest) Reset() {
 	*x = GetGroupRequest{}
-	mi := &file_node_proto_msgTypes[25]
+	mi := &file_node_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2004,7 +2116,7 @@ func (x *GetGroupRequest) String() string {
 func (*GetGroupRequest) ProtoMessage() {}
 
 func (x *GetGroupRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[25]
+	mi := &file_node_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2017,7 +2129,7 @@ func (x *GetGroupRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetGroupRequest.ProtoReflect.Descriptor instead.
 func (*GetGroupRequest) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{25}
+	return file_node_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *GetGroupRequest) GetQuery() isGetGroupRequest_Query {
@@ -2094,7 +2206,7 @@ type GroupResponse struct {
 
 func (x *GroupResponse) Reset() {
 	*x = GroupResponse{}
-	mi := &file_node_proto_msgTypes[26]
+	mi := &file_node_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2106,7 +2218,7 @@ func (x *GroupResponse) String() string {
 func (*GroupResponse) ProtoMessage() {}
 
 func (x *GroupResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[26]
+	mi := &file_node_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2119,7 +2231,7 @@ func (x *GroupResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GroupResponse.ProtoReflect.Descriptor instead.
 func (*GroupResponse) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{26}
+	return file_node_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *GroupResponse) GetGroup() *Group {
@@ -2153,7 +2265,7 @@ type ListGroupsRequest struct {
 
 func (x *ListGroupsRequest) Reset() {
 	*x = ListGroupsRequest{}
-	mi := &file_node_proto_msgTypes[27]
+	mi := &file_node_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2165,7 +2277,7 @@ func (x *ListGroupsRequest) String() string {
 func (*ListGroupsRequest) ProtoMessage() {}
 
 func (x *ListGroupsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[27]
+	mi := &file_node_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2178,7 +2290,7 @@ func (x *ListGroupsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListGroupsRequest.ProtoReflect.Descriptor instead.
 func (*ListGroupsRequest) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{27}
+	return file_node_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *ListGroupsRequest) GetVersionSetId() string {
@@ -2204,7 +2316,7 @@ type ListGroupsResponse struct {
 
 func (x *ListGroupsResponse) Reset() {
 	*x = ListGroupsResponse{}
-	mi := &file_node_proto_msgTypes[28]
+	mi := &file_node_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2216,7 +2328,7 @@ func (x *ListGroupsResponse) String() string {
 func (*ListGroupsResponse) ProtoMessage() {}
 
 func (x *ListGroupsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[28]
+	mi := &file_node_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2229,7 +2341,7 @@ func (x *ListGroupsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListGroupsResponse.ProtoReflect.Descriptor instead.
 func (*ListGroupsResponse) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{28}
+	return file_node_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *ListGroupsResponse) GetGroups() []*GroupResponse {
@@ -2256,7 +2368,7 @@ type UpdateGroupRequest struct {
 
 func (x *UpdateGroupRequest) Reset() {
 	*x = UpdateGroupRequest{}
-	mi := &file_node_proto_msgTypes[29]
+	mi := &file_node_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2268,7 +2380,7 @@ func (x *UpdateGroupRequest) String() string {
 func (*UpdateGroupRequest) ProtoMessage() {}
 
 func (x *UpdateGroupRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[29]
+	mi := &file_node_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2281,7 +2393,7 @@ func (x *UpdateGroupRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateGroupRequest.ProtoReflect.Descriptor instead.
 func (*UpdateGroupRequest) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{29}
+	return file_node_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *UpdateGroupRequest) GetQuery() isUpdateGroupRequest_Query {
@@ -2363,7 +2475,7 @@ type DeleteGroupRequest struct {
 
 func (x *DeleteGroupRequest) Reset() {
 	*x = DeleteGroupRequest{}
-	mi := &file_node_proto_msgTypes[30]
+	mi := &file_node_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2375,7 +2487,7 @@ func (x *DeleteGroupRequest) String() string {
 func (*DeleteGroupRequest) ProtoMessage() {}
 
 func (x *DeleteGroupRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[30]
+	mi := &file_node_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2388,7 +2500,7 @@ func (x *DeleteGroupRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteGroupRequest.ProtoReflect.Descriptor instead.
 func (*DeleteGroupRequest) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{30}
+	return file_node_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *DeleteGroupRequest) GetId() int32 {
@@ -2420,7 +2532,7 @@ type HardwareConfig struct {
 
 func (x *HardwareConfig) Reset() {
 	*x = HardwareConfig{}
-	mi := &file_node_proto_msgTypes[31]
+	mi := &file_node_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2432,7 +2544,7 @@ func (x *HardwareConfig) String() string {
 func (*HardwareConfig) ProtoMessage() {}
 
 func (x *HardwareConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[31]
+	mi := &file_node_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2445,7 +2557,7 @@ func (x *HardwareConfig) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HardwareConfig.ProtoReflect.Descriptor instead.
 func (*HardwareConfig) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{31}
+	return file_node_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *HardwareConfig) GetId() int32 {
@@ -2503,7 +2615,7 @@ type CreateHardwareConfigRequest struct {
 
 func (x *CreateHardwareConfigRequest) Reset() {
 	*x = CreateHardwareConfigRequest{}
-	mi := &file_node_proto_msgTypes[32]
+	mi := &file_node_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2515,7 +2627,7 @@ func (x *CreateHardwareConfigRequest) String() string {
 func (*CreateHardwareConfigRequest) ProtoMessage() {}
 
 func (x *CreateHardwareConfigRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[32]
+	mi := &file_node_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2528,7 +2640,7 @@ func (x *CreateHardwareConfigRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateHardwareConfigRequest.ProtoReflect.Descriptor instead.
 func (*CreateHardwareConfigRequest) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{32}
+	return file_node_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *CreateHardwareConfigRequest) GetNodeSerialNumber() string {
@@ -2576,7 +2688,7 @@ type HardwareConfigNameQuery struct {
 
 func (x *HardwareConfigNameQuery) Reset() {
 	*x = HardwareConfigNameQuery{}
-	mi := &file_node_proto_msgTypes[33]
+	mi := &file_node_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2588,7 +2700,7 @@ func (x *HardwareConfigNameQuery) String() string {
 func (*HardwareConfigNameQuery) ProtoMessage() {}
 
 func (x *HardwareConfigNameQuery) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[33]
+	mi := &file_node_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2601,7 +2713,7 @@ func (x *HardwareConfigNameQuery) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HardwareConfigNameQuery.ProtoReflect.Descriptor instead.
 func (*HardwareConfigNameQuery) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{33}
+	return file_node_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *HardwareConfigNameQuery) GetVersionSetId() string {
@@ -2632,7 +2744,7 @@ type GetHardwareConfigRequest struct {
 
 func (x *GetHardwareConfigRequest) Reset() {
 	*x = GetHardwareConfigRequest{}
-	mi := &file_node_proto_msgTypes[34]
+	mi := &file_node_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2644,7 +2756,7 @@ func (x *GetHardwareConfigRequest) String() string {
 func (*GetHardwareConfigRequest) ProtoMessage() {}
 
 func (x *GetHardwareConfigRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[34]
+	mi := &file_node_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2657,7 +2769,7 @@ func (x *GetHardwareConfigRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetHardwareConfigRequest.ProtoReflect.Descriptor instead.
 func (*GetHardwareConfigRequest) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{34}
+	return file_node_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *GetHardwareConfigRequest) GetQuery() isGetHardwareConfigRequest_Query {
@@ -2725,7 +2837,7 @@ type HardwareConfigResponse struct {
 
 func (x *HardwareConfigResponse) Reset() {
 	*x = HardwareConfigResponse{}
-	mi := &file_node_proto_msgTypes[35]
+	mi := &file_node_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2737,7 +2849,7 @@ func (x *HardwareConfigResponse) String() string {
 func (*HardwareConfigResponse) ProtoMessage() {}
 
 func (x *HardwareConfigResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[35]
+	mi := &file_node_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2750,7 +2862,7 @@ func (x *HardwareConfigResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HardwareConfigResponse.ProtoReflect.Descriptor instead.
 func (*HardwareConfigResponse) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{35}
+	return file_node_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *HardwareConfigResponse) GetHardwareConfig() []*HardwareConfig {
@@ -2772,7 +2884,7 @@ type UpdateHardwareConfigRequest struct {
 
 func (x *UpdateHardwareConfigRequest) Reset() {
 	*x = UpdateHardwareConfigRequest{}
-	mi := &file_node_proto_msgTypes[36]
+	mi := &file_node_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2784,7 +2896,7 @@ func (x *UpdateHardwareConfigRequest) String() string {
 func (*UpdateHardwareConfigRequest) ProtoMessage() {}
 
 func (x *UpdateHardwareConfigRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[36]
+	mi := &file_node_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2797,7 +2909,7 @@ func (x *UpdateHardwareConfigRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateHardwareConfigRequest.ProtoReflect.Descriptor instead.
 func (*UpdateHardwareConfigRequest) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{36}
+	return file_node_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *UpdateHardwareConfigRequest) GetId() int32 {
@@ -2837,7 +2949,7 @@ type DeleteHardwareConfigRequest struct {
 
 func (x *DeleteHardwareConfigRequest) Reset() {
 	*x = DeleteHardwareConfigRequest{}
-	mi := &file_node_proto_msgTypes[37]
+	mi := &file_node_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2849,7 +2961,7 @@ func (x *DeleteHardwareConfigRequest) String() string {
 func (*DeleteHardwareConfigRequest) ProtoMessage() {}
 
 func (x *DeleteHardwareConfigRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[37]
+	mi := &file_node_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2862,7 +2974,7 @@ func (x *DeleteHardwareConfigRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteHardwareConfigRequest.ProtoReflect.Descriptor instead.
 func (*DeleteHardwareConfigRequest) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{37}
+	return file_node_proto_rawDescGZIP(), []int{39}
 }
 
 func (x *DeleteHardwareConfigRequest) GetId() int32 {
@@ -2890,7 +3002,7 @@ type Proxy struct {
 
 func (x *Proxy) Reset() {
 	*x = Proxy{}
-	mi := &file_node_proto_msgTypes[38]
+	mi := &file_node_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2902,7 +3014,7 @@ func (x *Proxy) String() string {
 func (*Proxy) ProtoMessage() {}
 
 func (x *Proxy) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[38]
+	mi := &file_node_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2915,7 +3027,7 @@ func (x *Proxy) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Proxy.ProtoReflect.Descriptor instead.
 func (*Proxy) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{38}
+	return file_node_proto_rawDescGZIP(), []int{40}
 }
 
 func (x *Proxy) GetId() int32 {
@@ -2997,7 +3109,7 @@ type ProxyResponse struct {
 
 func (x *ProxyResponse) Reset() {
 	*x = ProxyResponse{}
-	mi := &file_node_proto_msgTypes[39]
+	mi := &file_node_proto_msgTypes[41]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3009,7 +3121,7 @@ func (x *ProxyResponse) String() string {
 func (*ProxyResponse) ProtoMessage() {}
 
 func (x *ProxyResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[39]
+	mi := &file_node_proto_msgTypes[41]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3022,7 +3134,7 @@ func (x *ProxyResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProxyResponse.ProtoReflect.Descriptor instead.
 func (*ProxyResponse) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{39}
+	return file_node_proto_rawDescGZIP(), []int{41}
 }
 
 func (x *ProxyResponse) GetProxy() []*Proxy {
@@ -3049,7 +3161,7 @@ type CreateProxyRequest struct {
 
 func (x *CreateProxyRequest) Reset() {
 	*x = CreateProxyRequest{}
-	mi := &file_node_proto_msgTypes[40]
+	mi := &file_node_proto_msgTypes[42]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3061,7 +3173,7 @@ func (x *CreateProxyRequest) String() string {
 func (*CreateProxyRequest) ProtoMessage() {}
 
 func (x *CreateProxyRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[40]
+	mi := &file_node_proto_msgTypes[42]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3074,7 +3186,7 @@ func (x *CreateProxyRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateProxyRequest.ProtoReflect.Descriptor instead.
 func (*CreateProxyRequest) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{40}
+	return file_node_proto_rawDescGZIP(), []int{42}
 }
 
 func (x *CreateProxyRequest) GetNodeSerialNumber() string {
@@ -3150,7 +3262,7 @@ type ProxyNameQuery struct {
 
 func (x *ProxyNameQuery) Reset() {
 	*x = ProxyNameQuery{}
-	mi := &file_node_proto_msgTypes[41]
+	mi := &file_node_proto_msgTypes[43]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3162,7 +3274,7 @@ func (x *ProxyNameQuery) String() string {
 func (*ProxyNameQuery) ProtoMessage() {}
 
 func (x *ProxyNameQuery) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[41]
+	mi := &file_node_proto_msgTypes[43]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3175,7 +3287,7 @@ func (x *ProxyNameQuery) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProxyNameQuery.ProtoReflect.Descriptor instead.
 func (*ProxyNameQuery) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{41}
+	return file_node_proto_rawDescGZIP(), []int{43}
 }
 
 func (x *ProxyNameQuery) GetVersionSetId() string {
@@ -3202,7 +3314,7 @@ type ProxySerialQuery struct {
 
 func (x *ProxySerialQuery) Reset() {
 	*x = ProxySerialQuery{}
-	mi := &file_node_proto_msgTypes[42]
+	mi := &file_node_proto_msgTypes[44]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3214,7 +3326,7 @@ func (x *ProxySerialQuery) String() string {
 func (*ProxySerialQuery) ProtoMessage() {}
 
 func (x *ProxySerialQuery) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[42]
+	mi := &file_node_proto_msgTypes[44]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3227,7 +3339,7 @@ func (x *ProxySerialQuery) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProxySerialQuery.ProtoReflect.Descriptor instead.
 func (*ProxySerialQuery) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{42}
+	return file_node_proto_rawDescGZIP(), []int{44}
 }
 
 func (x *ProxySerialQuery) GetVersionSetId() string {
@@ -3259,7 +3371,7 @@ type GetProxyRequest struct {
 
 func (x *GetProxyRequest) Reset() {
 	*x = GetProxyRequest{}
-	mi := &file_node_proto_msgTypes[43]
+	mi := &file_node_proto_msgTypes[45]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3271,7 +3383,7 @@ func (x *GetProxyRequest) String() string {
 func (*GetProxyRequest) ProtoMessage() {}
 
 func (x *GetProxyRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[43]
+	mi := &file_node_proto_msgTypes[45]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3284,7 +3396,7 @@ func (x *GetProxyRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetProxyRequest.ProtoReflect.Descriptor instead.
 func (*GetProxyRequest) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{43}
+	return file_node_proto_rawDescGZIP(), []int{45}
 }
 
 func (x *GetProxyRequest) GetQuery() isGetProxyRequest_Query {
@@ -3367,7 +3479,7 @@ type GetProxyResponse struct {
 
 func (x *GetProxyResponse) Reset() {
 	*x = GetProxyResponse{}
-	mi := &file_node_proto_msgTypes[44]
+	mi := &file_node_proto_msgTypes[46]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3379,7 +3491,7 @@ func (x *GetProxyResponse) String() string {
 func (*GetProxyResponse) ProtoMessage() {}
 
 func (x *GetProxyResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[44]
+	mi := &file_node_proto_msgTypes[46]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3392,7 +3504,7 @@ func (x *GetProxyResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetProxyResponse.ProtoReflect.Descriptor instead.
 func (*GetProxyResponse) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{44}
+	return file_node_proto_rawDescGZIP(), []int{46}
 }
 
 func (x *GetProxyResponse) GetProxy() []*Proxy {
@@ -3421,7 +3533,7 @@ type UpdateProxyRequest struct {
 
 func (x *UpdateProxyRequest) Reset() {
 	*x = UpdateProxyRequest{}
-	mi := &file_node_proto_msgTypes[45]
+	mi := &file_node_proto_msgTypes[47]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3433,7 +3545,7 @@ func (x *UpdateProxyRequest) String() string {
 func (*UpdateProxyRequest) ProtoMessage() {}
 
 func (x *UpdateProxyRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[45]
+	mi := &file_node_proto_msgTypes[47]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3446,7 +3558,7 @@ func (x *UpdateProxyRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateProxyRequest.ProtoReflect.Descriptor instead.
 func (*UpdateProxyRequest) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{45}
+	return file_node_proto_rawDescGZIP(), []int{47}
 }
 
 func (x *UpdateProxyRequest) GetQuery() isUpdateProxyRequest_Query {
@@ -3541,7 +3653,7 @@ type DeleteProxyRequest struct {
 
 func (x *DeleteProxyRequest) Reset() {
 	*x = DeleteProxyRequest{}
-	mi := &file_node_proto_msgTypes[46]
+	mi := &file_node_proto_msgTypes[48]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3553,7 +3665,7 @@ func (x *DeleteProxyRequest) String() string {
 func (*DeleteProxyRequest) ProtoMessage() {}
 
 func (x *DeleteProxyRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[46]
+	mi := &file_node_proto_msgTypes[48]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3566,7 +3678,7 @@ func (x *DeleteProxyRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteProxyRequest.ProtoReflect.Descriptor instead.
 func (*DeleteProxyRequest) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{46}
+	return file_node_proto_rawDescGZIP(), []int{48}
 }
 
 func (x *DeleteProxyRequest) GetId() int32 {
@@ -3592,7 +3704,7 @@ type VersionSet struct {
 
 func (x *VersionSet) Reset() {
 	*x = VersionSet{}
-	mi := &file_node_proto_msgTypes[47]
+	mi := &file_node_proto_msgTypes[49]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3604,7 +3716,7 @@ func (x *VersionSet) String() string {
 func (*VersionSet) ProtoMessage() {}
 
 func (x *VersionSet) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[47]
+	mi := &file_node_proto_msgTypes[49]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3617,7 +3729,7 @@ func (x *VersionSet) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VersionSet.ProtoReflect.Descriptor instead.
 func (*VersionSet) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{47}
+	return file_node_proto_rawDescGZIP(), []int{49}
 }
 
 func (x *VersionSet) GetId() string {
@@ -3688,7 +3800,7 @@ type CreateVersionSetRequest struct {
 
 func (x *CreateVersionSetRequest) Reset() {
 	*x = CreateVersionSetRequest{}
-	mi := &file_node_proto_msgTypes[48]
+	mi := &file_node_proto_msgTypes[50]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3700,7 +3812,7 @@ func (x *CreateVersionSetRequest) String() string {
 func (*CreateVersionSetRequest) ProtoMessage() {}
 
 func (x *CreateVersionSetRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[48]
+	mi := &file_node_proto_msgTypes[50]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3713,7 +3825,7 @@ func (x *CreateVersionSetRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateVersionSetRequest.ProtoReflect.Descriptor instead.
 func (*CreateVersionSetRequest) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{48}
+	return file_node_proto_rawDescGZIP(), []int{50}
 }
 
 func (x *CreateVersionSetRequest) GetName() string {
@@ -3753,7 +3865,7 @@ type GetVersionSetRequest struct {
 
 func (x *GetVersionSetRequest) Reset() {
 	*x = GetVersionSetRequest{}
-	mi := &file_node_proto_msgTypes[49]
+	mi := &file_node_proto_msgTypes[51]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3765,7 +3877,7 @@ func (x *GetVersionSetRequest) String() string {
 func (*GetVersionSetRequest) ProtoMessage() {}
 
 func (x *GetVersionSetRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[49]
+	mi := &file_node_proto_msgTypes[51]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3778,7 +3890,7 @@ func (x *GetVersionSetRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetVersionSetRequest.ProtoReflect.Descriptor instead.
 func (*GetVersionSetRequest) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{49}
+	return file_node_proto_rawDescGZIP(), []int{51}
 }
 
 func (x *GetVersionSetRequest) GetId() string {
@@ -3797,7 +3909,7 @@ type VersionSetResponse struct {
 
 func (x *VersionSetResponse) Reset() {
 	*x = VersionSetResponse{}
-	mi := &file_node_proto_msgTypes[50]
+	mi := &file_node_proto_msgTypes[52]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3809,7 +3921,7 @@ func (x *VersionSetResponse) String() string {
 func (*VersionSetResponse) ProtoMessage() {}
 
 func (x *VersionSetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[50]
+	mi := &file_node_proto_msgTypes[52]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3822,7 +3934,7 @@ func (x *VersionSetResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VersionSetResponse.ProtoReflect.Descriptor instead.
 func (*VersionSetResponse) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{50}
+	return file_node_proto_rawDescGZIP(), []int{52}
 }
 
 func (x *VersionSetResponse) GetVersionSet() *VersionSet {
@@ -3841,7 +3953,7 @@ type ListVersionSetsRequest struct {
 
 func (x *ListVersionSetsRequest) Reset() {
 	*x = ListVersionSetsRequest{}
-	mi := &file_node_proto_msgTypes[51]
+	mi := &file_node_proto_msgTypes[53]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3853,7 +3965,7 @@ func (x *ListVersionSetsRequest) String() string {
 func (*ListVersionSetsRequest) ProtoMessage() {}
 
 func (x *ListVersionSetsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[51]
+	mi := &file_node_proto_msgTypes[53]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3866,7 +3978,7 @@ func (x *ListVersionSetsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListVersionSetsRequest.ProtoReflect.Descriptor instead.
 func (*ListVersionSetsRequest) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{51}
+	return file_node_proto_rawDescGZIP(), []int{53}
 }
 
 func (x *ListVersionSetsRequest) GetState() VersionState {
@@ -3885,7 +3997,7 @@ type ListVersionSetsResponse struct {
 
 func (x *ListVersionSetsResponse) Reset() {
 	*x = ListVersionSetsResponse{}
-	mi := &file_node_proto_msgTypes[52]
+	mi := &file_node_proto_msgTypes[54]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3897,7 +4009,7 @@ func (x *ListVersionSetsResponse) String() string {
 func (*ListVersionSetsResponse) ProtoMessage() {}
 
 func (x *ListVersionSetsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[52]
+	mi := &file_node_proto_msgTypes[54]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3910,7 +4022,7 @@ func (x *ListVersionSetsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListVersionSetsResponse.ProtoReflect.Descriptor instead.
 func (*ListVersionSetsResponse) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{52}
+	return file_node_proto_rawDescGZIP(), []int{54}
 }
 
 func (x *ListVersionSetsResponse) GetVersionSets() []*VersionSet {
@@ -3932,7 +4044,7 @@ type UpdateVersionSetRequest struct {
 
 func (x *UpdateVersionSetRequest) Reset() {
 	*x = UpdateVersionSetRequest{}
-	mi := &file_node_proto_msgTypes[53]
+	mi := &file_node_proto_msgTypes[55]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3944,7 +4056,7 @@ func (x *UpdateVersionSetRequest) String() string {
 func (*UpdateVersionSetRequest) ProtoMessage() {}
 
 func (x *UpdateVersionSetRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[53]
+	mi := &file_node_proto_msgTypes[55]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3957,7 +4069,7 @@ func (x *UpdateVersionSetRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateVersionSetRequest.ProtoReflect.Descriptor instead.
 func (*UpdateVersionSetRequest) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{53}
+	return file_node_proto_rawDescGZIP(), []int{55}
 }
 
 func (x *UpdateVersionSetRequest) GetId() string {
@@ -3997,7 +4109,7 @@ type DeleteVersionSetRequest struct {
 
 func (x *DeleteVersionSetRequest) Reset() {
 	*x = DeleteVersionSetRequest{}
-	mi := &file_node_proto_msgTypes[54]
+	mi := &file_node_proto_msgTypes[56]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4009,7 +4121,7 @@ func (x *DeleteVersionSetRequest) String() string {
 func (*DeleteVersionSetRequest) ProtoMessage() {}
 
 func (x *DeleteVersionSetRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[54]
+	mi := &file_node_proto_msgTypes[56]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4022,7 +4134,7 @@ func (x *DeleteVersionSetRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteVersionSetRequest.ProtoReflect.Descriptor instead.
 func (*DeleteVersionSetRequest) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{54}
+	return file_node_proto_rawDescGZIP(), []int{56}
 }
 
 func (x *DeleteVersionSetRequest) GetId() string {
@@ -4041,7 +4153,7 @@ type ActivateVersionSetRequest struct {
 
 func (x *ActivateVersionSetRequest) Reset() {
 	*x = ActivateVersionSetRequest{}
-	mi := &file_node_proto_msgTypes[55]
+	mi := &file_node_proto_msgTypes[57]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4053,7 +4165,7 @@ func (x *ActivateVersionSetRequest) String() string {
 func (*ActivateVersionSetRequest) ProtoMessage() {}
 
 func (x *ActivateVersionSetRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[55]
+	mi := &file_node_proto_msgTypes[57]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4066,7 +4178,7 @@ func (x *ActivateVersionSetRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ActivateVersionSetRequest.ProtoReflect.Descriptor instead.
 func (*ActivateVersionSetRequest) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{55}
+	return file_node_proto_rawDescGZIP(), []int{57}
 }
 
 func (x *ActivateVersionSetRequest) GetId() string {
@@ -4085,7 +4197,7 @@ type DisableVersionSetRequest struct {
 
 func (x *DisableVersionSetRequest) Reset() {
 	*x = DisableVersionSetRequest{}
-	mi := &file_node_proto_msgTypes[56]
+	mi := &file_node_proto_msgTypes[58]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4097,7 +4209,7 @@ func (x *DisableVersionSetRequest) String() string {
 func (*DisableVersionSetRequest) ProtoMessage() {}
 
 func (x *DisableVersionSetRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_node_proto_msgTypes[56]
+	mi := &file_node_proto_msgTypes[58]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4110,7 +4222,7 @@ func (x *DisableVersionSetRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DisableVersionSetRequest.ProtoReflect.Descriptor instead.
 func (*DisableVersionSetRequest) Descriptor() ([]byte, []int) {
-	return file_node_proto_rawDescGZIP(), []int{56}
+	return file_node_proto_rawDescGZIP(), []int{58}
 }
 
 func (x *DisableVersionSetRequest) GetId() string {
@@ -4132,7 +4244,16 @@ const file_node_proto_rawDesc = "" +
 	"\x04algo\x18\x03 \x01(\tH\x00R\x04algo\x88\x01\x01\x12\x1e\n" +
 	"\balt_algo\x18\x04 \x01(\tH\x01R\aaltAlgo\x88\x01\x01B\a\n" +
 	"\x05_algoB\v\n" +
-	"\t_alt_algo\"2\n" +
+	"\t_alt_algo\"\xbb\x01\n" +
+	"\x17TriggerFleetCertRequest\x12$\n" +
+	"\x0eversion_set_id\x18\x01 \x01(\tR\fversionSetId\x12+\n" +
+	"\tcert_type\x18\x02 \x01(\x0e2\x0e.node.CertTypeR\bcertType\x12\x17\n" +
+	"\x04algo\x18\x03 \x01(\tH\x00R\x04algo\x88\x01\x01\x12\x1e\n" +
+	"\balt_algo\x18\x04 \x01(\tH\x01R\aaltAlgo\x88\x01\x01B\a\n" +
+	"\x05_algoB\v\n" +
+	"\t_alt_algo\"7\n" +
+	"\x1bTriggerFleetCertReqResponse\x12\x18\n" +
+	"\aretcode\x18\x01 \x01(\x05R\aretcode\"2\n" +
 	"\x16TriggerCertReqResponse\x12\x18\n" +
 	"\aretcode\x18\x01 \x01(\x05R\aretcode\"`\n" +
 	"\x13ActivateNodeRequest\x12$\n" +
@@ -4489,7 +4610,7 @@ const file_node_proto_rawDesc = "" +
 	"\x12PENDING_DEPLOYMENT\x10\x01\x12\n" +
 	"\n" +
 	"\x06ACTIVE\x10\x02\x12\f\n" +
-	"\bDISABLED\x10\x032\xc8\x12\n" +
+	"\bDISABLED\x10\x032\xa1\x13\n" +
 	"\n" +
 	"Southbound\x129\n" +
 	"\n" +
@@ -4528,7 +4649,8 @@ const file_node_proto_rawDesc = "" +
 	"\vDeleteProxy\x12\x18.node.DeleteProxyRequest\x1a\x16.google.protobuf.Empty\x12C\n" +
 	"\rActivateFleet\x12\x1a.node.ActivateFleetRequest\x1a\x16.node.ActivateResponse\x12A\n" +
 	"\fActivateNode\x12\x19.node.ActivateNodeRequest\x1a\x16.node.ActivateResponse\x12K\n" +
-	"\x0eTriggerCertReq\x12\x1b.node.TriggerCertReqRequest\x1a\x1c.node.TriggerCertReqResponseBMZKgithub.com/Laboratory-for-Safe-and-Secure-Systems/kritis3m_proto/southboundb\x06proto3"
+	"\x0eTriggerCertReq\x12\x1b.node.TriggerCertReqRequest\x1a\x1c.node.TriggerCertReqResponse\x12W\n" +
+	"\x13TriggerFleetCertReq\x12\x1d.node.TriggerFleetCertRequest\x1a!.node.TriggerFleetCertReqResponseBMZKgithub.com/Laboratory-for-Safe-and-Secure-Systems/kritis3m_proto/southboundb\x06proto3"
 
 var (
 	file_node_proto_rawDescOnce sync.Once
@@ -4543,185 +4665,190 @@ func file_node_proto_rawDescGZIP() []byte {
 }
 
 var file_node_proto_enumTypes = make([]protoimpl.EnumInfo, 4)
-var file_node_proto_msgTypes = make([]protoimpl.MessageInfo, 57)
+var file_node_proto_msgTypes = make([]protoimpl.MessageInfo, 59)
 var file_node_proto_goTypes = []any{
 	(CertType)(0),                       // 0: node.CertType
 	(ProxyType)(0),                      // 1: node.ProxyType
 	(AslKeyexchangeMethod)(0),           // 2: node.AslKeyexchangeMethod
 	(VersionState)(0),                   // 3: node.VersionState
 	(*TriggerCertReqRequest)(nil),       // 4: node.TriggerCertReqRequest
-	(*TriggerCertReqResponse)(nil),      // 5: node.TriggerCertReqResponse
-	(*ActivateNodeRequest)(nil),         // 6: node.ActivateNodeRequest
-	(*ActivateFleetRequest)(nil),        // 7: node.ActivateFleetRequest
-	(*ActivateResponse)(nil),            // 8: node.ActivateResponse
-	(*Node)(nil),                        // 9: node.Node
-	(*NodeResponse)(nil),                // 10: node.NodeResponse
-	(*CreateNodeRequest)(nil),           // 11: node.CreateNodeRequest
-	(*NodeNameQuery)(nil),               // 12: node.NodeNameQuery
-	(*GetNodeRequest)(nil),              // 13: node.GetNodeRequest
-	(*ListNodesRequest)(nil),            // 14: node.ListNodesRequest
-	(*ListNodesResponse)(nil),           // 15: node.ListNodesResponse
-	(*UpdateNodeRequest)(nil),           // 16: node.UpdateNodeRequest
-	(*DeleteNodeRequest)(nil),           // 17: node.DeleteNodeRequest
-	(*EndpointConfig)(nil),              // 18: node.EndpointConfig
-	(*EndpointConfigNameQuery)(nil),     // 19: node.EndpointConfigNameQuery
-	(*CreateEndpointConfigRequest)(nil), // 20: node.CreateEndpointConfigRequest
-	(*GetEndpointConfigRequest)(nil),    // 21: node.GetEndpointConfigRequest
-	(*ListEndpointConfigsRequest)(nil),  // 22: node.ListEndpointConfigsRequest
-	(*ListEndpointConfigsResponse)(nil), // 23: node.ListEndpointConfigsResponse
-	(*UpdateEndpointConfigRequest)(nil), // 24: node.UpdateEndpointConfigRequest
-	(*DeleteEndpointConfigRequest)(nil), // 25: node.DeleteEndpointConfigRequest
-	(*Group)(nil),                       // 26: node.Group
-	(*CreateGroupRequest)(nil),          // 27: node.CreateGroupRequest
-	(*GroupNameQuery)(nil),              // 28: node.GroupNameQuery
-	(*GetGroupRequest)(nil),             // 29: node.GetGroupRequest
-	(*GroupResponse)(nil),               // 30: node.GroupResponse
-	(*ListGroupsRequest)(nil),           // 31: node.ListGroupsRequest
-	(*ListGroupsResponse)(nil),          // 32: node.ListGroupsResponse
-	(*UpdateGroupRequest)(nil),          // 33: node.UpdateGroupRequest
-	(*DeleteGroupRequest)(nil),          // 34: node.DeleteGroupRequest
-	(*HardwareConfig)(nil),              // 35: node.HardwareConfig
-	(*CreateHardwareConfigRequest)(nil), // 36: node.CreateHardwareConfigRequest
-	(*HardwareConfigNameQuery)(nil),     // 37: node.HardwareConfigNameQuery
-	(*GetHardwareConfigRequest)(nil),    // 38: node.GetHardwareConfigRequest
-	(*HardwareConfigResponse)(nil),      // 39: node.HardwareConfigResponse
-	(*UpdateHardwareConfigRequest)(nil), // 40: node.UpdateHardwareConfigRequest
-	(*DeleteHardwareConfigRequest)(nil), // 41: node.DeleteHardwareConfigRequest
-	(*Proxy)(nil),                       // 42: node.Proxy
-	(*ProxyResponse)(nil),               // 43: node.ProxyResponse
-	(*CreateProxyRequest)(nil),          // 44: node.CreateProxyRequest
-	(*ProxyNameQuery)(nil),              // 45: node.ProxyNameQuery
-	(*ProxySerialQuery)(nil),            // 46: node.ProxySerialQuery
-	(*GetProxyRequest)(nil),             // 47: node.GetProxyRequest
-	(*GetProxyResponse)(nil),            // 48: node.GetProxyResponse
-	(*UpdateProxyRequest)(nil),          // 49: node.UpdateProxyRequest
-	(*DeleteProxyRequest)(nil),          // 50: node.DeleteProxyRequest
-	(*VersionSet)(nil),                  // 51: node.VersionSet
-	(*CreateVersionSetRequest)(nil),     // 52: node.CreateVersionSetRequest
-	(*GetVersionSetRequest)(nil),        // 53: node.GetVersionSetRequest
-	(*VersionSetResponse)(nil),          // 54: node.VersionSetResponse
-	(*ListVersionSetsRequest)(nil),      // 55: node.ListVersionSetsRequest
-	(*ListVersionSetsResponse)(nil),     // 56: node.ListVersionSetsResponse
-	(*UpdateVersionSetRequest)(nil),     // 57: node.UpdateVersionSetRequest
-	(*DeleteVersionSetRequest)(nil),     // 58: node.DeleteVersionSetRequest
-	(*ActivateVersionSetRequest)(nil),   // 59: node.ActivateVersionSetRequest
-	(*DisableVersionSetRequest)(nil),    // 60: node.DisableVersionSetRequest
-	(*_struct.Struct)(nil),              // 61: google.protobuf.Struct
-	(*timestamp.Timestamp)(nil),         // 62: google.protobuf.Timestamp
-	(*empty.Empty)(nil),                 // 63: google.protobuf.Empty
+	(*TriggerFleetCertRequest)(nil),     // 5: node.TriggerFleetCertRequest
+	(*TriggerFleetCertReqResponse)(nil), // 6: node.TriggerFleetCertReqResponse
+	(*TriggerCertReqResponse)(nil),      // 7: node.TriggerCertReqResponse
+	(*ActivateNodeRequest)(nil),         // 8: node.ActivateNodeRequest
+	(*ActivateFleetRequest)(nil),        // 9: node.ActivateFleetRequest
+	(*ActivateResponse)(nil),            // 10: node.ActivateResponse
+	(*Node)(nil),                        // 11: node.Node
+	(*NodeResponse)(nil),                // 12: node.NodeResponse
+	(*CreateNodeRequest)(nil),           // 13: node.CreateNodeRequest
+	(*NodeNameQuery)(nil),               // 14: node.NodeNameQuery
+	(*GetNodeRequest)(nil),              // 15: node.GetNodeRequest
+	(*ListNodesRequest)(nil),            // 16: node.ListNodesRequest
+	(*ListNodesResponse)(nil),           // 17: node.ListNodesResponse
+	(*UpdateNodeRequest)(nil),           // 18: node.UpdateNodeRequest
+	(*DeleteNodeRequest)(nil),           // 19: node.DeleteNodeRequest
+	(*EndpointConfig)(nil),              // 20: node.EndpointConfig
+	(*EndpointConfigNameQuery)(nil),     // 21: node.EndpointConfigNameQuery
+	(*CreateEndpointConfigRequest)(nil), // 22: node.CreateEndpointConfigRequest
+	(*GetEndpointConfigRequest)(nil),    // 23: node.GetEndpointConfigRequest
+	(*ListEndpointConfigsRequest)(nil),  // 24: node.ListEndpointConfigsRequest
+	(*ListEndpointConfigsResponse)(nil), // 25: node.ListEndpointConfigsResponse
+	(*UpdateEndpointConfigRequest)(nil), // 26: node.UpdateEndpointConfigRequest
+	(*DeleteEndpointConfigRequest)(nil), // 27: node.DeleteEndpointConfigRequest
+	(*Group)(nil),                       // 28: node.Group
+	(*CreateGroupRequest)(nil),          // 29: node.CreateGroupRequest
+	(*GroupNameQuery)(nil),              // 30: node.GroupNameQuery
+	(*GetGroupRequest)(nil),             // 31: node.GetGroupRequest
+	(*GroupResponse)(nil),               // 32: node.GroupResponse
+	(*ListGroupsRequest)(nil),           // 33: node.ListGroupsRequest
+	(*ListGroupsResponse)(nil),          // 34: node.ListGroupsResponse
+	(*UpdateGroupRequest)(nil),          // 35: node.UpdateGroupRequest
+	(*DeleteGroupRequest)(nil),          // 36: node.DeleteGroupRequest
+	(*HardwareConfig)(nil),              // 37: node.HardwareConfig
+	(*CreateHardwareConfigRequest)(nil), // 38: node.CreateHardwareConfigRequest
+	(*HardwareConfigNameQuery)(nil),     // 39: node.HardwareConfigNameQuery
+	(*GetHardwareConfigRequest)(nil),    // 40: node.GetHardwareConfigRequest
+	(*HardwareConfigResponse)(nil),      // 41: node.HardwareConfigResponse
+	(*UpdateHardwareConfigRequest)(nil), // 42: node.UpdateHardwareConfigRequest
+	(*DeleteHardwareConfigRequest)(nil), // 43: node.DeleteHardwareConfigRequest
+	(*Proxy)(nil),                       // 44: node.Proxy
+	(*ProxyResponse)(nil),               // 45: node.ProxyResponse
+	(*CreateProxyRequest)(nil),          // 46: node.CreateProxyRequest
+	(*ProxyNameQuery)(nil),              // 47: node.ProxyNameQuery
+	(*ProxySerialQuery)(nil),            // 48: node.ProxySerialQuery
+	(*GetProxyRequest)(nil),             // 49: node.GetProxyRequest
+	(*GetProxyResponse)(nil),            // 50: node.GetProxyResponse
+	(*UpdateProxyRequest)(nil),          // 51: node.UpdateProxyRequest
+	(*DeleteProxyRequest)(nil),          // 52: node.DeleteProxyRequest
+	(*VersionSet)(nil),                  // 53: node.VersionSet
+	(*CreateVersionSetRequest)(nil),     // 54: node.CreateVersionSetRequest
+	(*GetVersionSetRequest)(nil),        // 55: node.GetVersionSetRequest
+	(*VersionSetResponse)(nil),          // 56: node.VersionSetResponse
+	(*ListVersionSetsRequest)(nil),      // 57: node.ListVersionSetsRequest
+	(*ListVersionSetsResponse)(nil),     // 58: node.ListVersionSetsResponse
+	(*UpdateVersionSetRequest)(nil),     // 59: node.UpdateVersionSetRequest
+	(*DeleteVersionSetRequest)(nil),     // 60: node.DeleteVersionSetRequest
+	(*ActivateVersionSetRequest)(nil),   // 61: node.ActivateVersionSetRequest
+	(*DisableVersionSetRequest)(nil),    // 62: node.DisableVersionSetRequest
+	(*_struct.Struct)(nil),              // 63: google.protobuf.Struct
+	(*timestamp.Timestamp)(nil),         // 64: google.protobuf.Timestamp
+	(*empty.Empty)(nil),                 // 65: google.protobuf.Empty
 }
 var file_node_proto_depIdxs = []int32{
 	0,  // 0: node.TriggerCertReqRequest.cert_type:type_name -> node.CertType
-	61, // 1: node.ActivateResponse.metadata:type_name -> google.protobuf.Struct
-	62, // 2: node.Node.last_seen:type_name -> google.protobuf.Timestamp
-	9,  // 3: node.NodeResponse.node:type_name -> node.Node
-	42, // 4: node.NodeResponse.proxy:type_name -> node.Proxy
-	35, // 5: node.NodeResponse.hw_configs:type_name -> node.HardwareConfig
-	12, // 6: node.GetNodeRequest.node_query:type_name -> node.NodeNameQuery
-	10, // 7: node.ListNodesResponse.nodes:type_name -> node.NodeResponse
-	12, // 8: node.UpdateNodeRequest.node_query:type_name -> node.NodeNameQuery
-	62, // 9: node.UpdateNodeRequest.last_seen:type_name -> google.protobuf.Timestamp
-	2,  // 10: node.CreateEndpointConfigRequest.asl_key_exchange_method:type_name -> node.AslKeyexchangeMethod
-	19, // 11: node.GetEndpointConfigRequest.endpoint_config_query:type_name -> node.EndpointConfigNameQuery
-	18, // 12: node.ListEndpointConfigsResponse.configs:type_name -> node.EndpointConfig
-	19, // 13: node.UpdateEndpointConfigRequest.endpoint_config_query:type_name -> node.EndpointConfigNameQuery
-	2,  // 14: node.UpdateEndpointConfigRequest.asl_key_exchange_method:type_name -> node.AslKeyexchangeMethod
-	28, // 15: node.GetGroupRequest.group_query:type_name -> node.GroupNameQuery
-	26, // 16: node.GroupResponse.group:type_name -> node.Group
-	18, // 17: node.GroupResponse.primary:type_name -> node.EndpointConfig
-	18, // 18: node.GroupResponse.legacy:type_name -> node.EndpointConfig
-	30, // 19: node.ListGroupsResponse.groups:type_name -> node.GroupResponse
-	28, // 20: node.UpdateGroupRequest.group_query:type_name -> node.GroupNameQuery
-	37, // 21: node.GetHardwareConfigRequest.hardware_config_query:type_name -> node.HardwareConfigNameQuery
-	35, // 22: node.HardwareConfigResponse.hardware_config:type_name -> node.HardwareConfig
-	1,  // 23: node.Proxy.proxy_type:type_name -> node.ProxyType
-	42, // 24: node.ProxyResponse.proxy:type_name -> node.Proxy
-	1,  // 25: node.CreateProxyRequest.proxy_type:type_name -> node.ProxyType
-	45, // 26: node.GetProxyRequest.name_query:type_name -> node.ProxyNameQuery
-	46, // 27: node.GetProxyRequest.serial_query:type_name -> node.ProxySerialQuery
-	42, // 28: node.GetProxyResponse.proxy:type_name -> node.Proxy
-	45, // 29: node.UpdateProxyRequest.name_query:type_name -> node.ProxyNameQuery
-	1,  // 30: node.UpdateProxyRequest.proxy_type:type_name -> node.ProxyType
-	3,  // 31: node.VersionSet.state:type_name -> node.VersionState
-	62, // 32: node.VersionSet.activated_at:type_name -> google.protobuf.Timestamp
-	62, // 33: node.VersionSet.disabled_at:type_name -> google.protobuf.Timestamp
-	61, // 34: node.VersionSet.metadata:type_name -> google.protobuf.Struct
-	61, // 35: node.CreateVersionSetRequest.metadata:type_name -> google.protobuf.Struct
-	51, // 36: node.VersionSetResponse.version_set:type_name -> node.VersionSet
-	3,  // 37: node.ListVersionSetsRequest.state:type_name -> node.VersionState
-	51, // 38: node.ListVersionSetsResponse.version_sets:type_name -> node.VersionSet
-	61, // 39: node.UpdateVersionSetRequest.metadata:type_name -> google.protobuf.Struct
-	11, // 40: node.Southbound.CreateNode:input_type -> node.CreateNodeRequest
-	13, // 41: node.Southbound.GetNode:input_type -> node.GetNodeRequest
-	14, // 42: node.Southbound.ListNodes:input_type -> node.ListNodesRequest
-	16, // 43: node.Southbound.UpdateNode:input_type -> node.UpdateNodeRequest
-	17, // 44: node.Southbound.DeleteNode:input_type -> node.DeleteNodeRequest
-	20, // 45: node.Southbound.CreateEndpointConfig:input_type -> node.CreateEndpointConfigRequest
-	21, // 46: node.Southbound.GetEndpointConfig:input_type -> node.GetEndpointConfigRequest
-	22, // 47: node.Southbound.ListEndpointConfigs:input_type -> node.ListEndpointConfigsRequest
-	24, // 48: node.Southbound.UpdateEndpointConfig:input_type -> node.UpdateEndpointConfigRequest
-	25, // 49: node.Southbound.DeleteEndpointConfig:input_type -> node.DeleteEndpointConfigRequest
-	27, // 50: node.Southbound.CreateGroup:input_type -> node.CreateGroupRequest
-	29, // 51: node.Southbound.GetGroup:input_type -> node.GetGroupRequest
-	31, // 52: node.Southbound.ListGroups:input_type -> node.ListGroupsRequest
-	33, // 53: node.Southbound.UpdateGroup:input_type -> node.UpdateGroupRequest
-	34, // 54: node.Southbound.DeleteGroup:input_type -> node.DeleteGroupRequest
-	36, // 55: node.Southbound.CreateHardwareConfig:input_type -> node.CreateHardwareConfigRequest
-	38, // 56: node.Southbound.GetHardwareConfig:input_type -> node.GetHardwareConfigRequest
-	40, // 57: node.Southbound.UpdateHardwareConfig:input_type -> node.UpdateHardwareConfigRequest
-	41, // 58: node.Southbound.DeleteHardwareConfig:input_type -> node.DeleteHardwareConfigRequest
-	52, // 59: node.Southbound.CreateVersionSet:input_type -> node.CreateVersionSetRequest
-	53, // 60: node.Southbound.GetVersionSet:input_type -> node.GetVersionSetRequest
-	55, // 61: node.Southbound.ListVersionSets:input_type -> node.ListVersionSetsRequest
-	57, // 62: node.Southbound.UpdateVersionSet:input_type -> node.UpdateVersionSetRequest
-	58, // 63: node.Southbound.DeleteVersionSet:input_type -> node.DeleteVersionSetRequest
-	59, // 64: node.Southbound.ActivateVersionSet:input_type -> node.ActivateVersionSetRequest
-	60, // 65: node.Southbound.DisableVersionSet:input_type -> node.DisableVersionSetRequest
-	44, // 66: node.Southbound.CreateProxy:input_type -> node.CreateProxyRequest
-	47, // 67: node.Southbound.GetProxy:input_type -> node.GetProxyRequest
-	49, // 68: node.Southbound.UpdateProxy:input_type -> node.UpdateProxyRequest
-	50, // 69: node.Southbound.DeleteProxy:input_type -> node.DeleteProxyRequest
-	7,  // 70: node.Southbound.ActivateFleet:input_type -> node.ActivateFleetRequest
-	6,  // 71: node.Southbound.ActivateNode:input_type -> node.ActivateNodeRequest
-	4,  // 72: node.Southbound.TriggerCertReq:input_type -> node.TriggerCertReqRequest
-	10, // 73: node.Southbound.CreateNode:output_type -> node.NodeResponse
-	10, // 74: node.Southbound.GetNode:output_type -> node.NodeResponse
-	15, // 75: node.Southbound.ListNodes:output_type -> node.ListNodesResponse
-	63, // 76: node.Southbound.UpdateNode:output_type -> google.protobuf.Empty
-	63, // 77: node.Southbound.DeleteNode:output_type -> google.protobuf.Empty
-	18, // 78: node.Southbound.CreateEndpointConfig:output_type -> node.EndpointConfig
-	18, // 79: node.Southbound.GetEndpointConfig:output_type -> node.EndpointConfig
-	23, // 80: node.Southbound.ListEndpointConfigs:output_type -> node.ListEndpointConfigsResponse
-	63, // 81: node.Southbound.UpdateEndpointConfig:output_type -> google.protobuf.Empty
-	63, // 82: node.Southbound.DeleteEndpointConfig:output_type -> google.protobuf.Empty
-	30, // 83: node.Southbound.CreateGroup:output_type -> node.GroupResponse
-	30, // 84: node.Southbound.GetGroup:output_type -> node.GroupResponse
-	32, // 85: node.Southbound.ListGroups:output_type -> node.ListGroupsResponse
-	63, // 86: node.Southbound.UpdateGroup:output_type -> google.protobuf.Empty
-	63, // 87: node.Southbound.DeleteGroup:output_type -> google.protobuf.Empty
-	39, // 88: node.Southbound.CreateHardwareConfig:output_type -> node.HardwareConfigResponse
-	39, // 89: node.Southbound.GetHardwareConfig:output_type -> node.HardwareConfigResponse
-	63, // 90: node.Southbound.UpdateHardwareConfig:output_type -> google.protobuf.Empty
-	63, // 91: node.Southbound.DeleteHardwareConfig:output_type -> google.protobuf.Empty
-	54, // 92: node.Southbound.CreateVersionSet:output_type -> node.VersionSetResponse
-	54, // 93: node.Southbound.GetVersionSet:output_type -> node.VersionSetResponse
-	56, // 94: node.Southbound.ListVersionSets:output_type -> node.ListVersionSetsResponse
-	63, // 95: node.Southbound.UpdateVersionSet:output_type -> google.protobuf.Empty
-	63, // 96: node.Southbound.DeleteVersionSet:output_type -> google.protobuf.Empty
-	54, // 97: node.Southbound.ActivateVersionSet:output_type -> node.VersionSetResponse
-	54, // 98: node.Southbound.DisableVersionSet:output_type -> node.VersionSetResponse
-	43, // 99: node.Southbound.CreateProxy:output_type -> node.ProxyResponse
-	43, // 100: node.Southbound.GetProxy:output_type -> node.ProxyResponse
-	63, // 101: node.Southbound.UpdateProxy:output_type -> google.protobuf.Empty
-	63, // 102: node.Southbound.DeleteProxy:output_type -> google.protobuf.Empty
-	8,  // 103: node.Southbound.ActivateFleet:output_type -> node.ActivateResponse
-	8,  // 104: node.Southbound.ActivateNode:output_type -> node.ActivateResponse
-	5,  // 105: node.Southbound.TriggerCertReq:output_type -> node.TriggerCertReqResponse
-	73, // [73:106] is the sub-list for method output_type
-	40, // [40:73] is the sub-list for method input_type
-	40, // [40:40] is the sub-list for extension type_name
-	40, // [40:40] is the sub-list for extension extendee
-	0,  // [0:40] is the sub-list for field type_name
+	0,  // 1: node.TriggerFleetCertRequest.cert_type:type_name -> node.CertType
+	63, // 2: node.ActivateResponse.metadata:type_name -> google.protobuf.Struct
+	64, // 3: node.Node.last_seen:type_name -> google.protobuf.Timestamp
+	11, // 4: node.NodeResponse.node:type_name -> node.Node
+	44, // 5: node.NodeResponse.proxy:type_name -> node.Proxy
+	37, // 6: node.NodeResponse.hw_configs:type_name -> node.HardwareConfig
+	14, // 7: node.GetNodeRequest.node_query:type_name -> node.NodeNameQuery
+	12, // 8: node.ListNodesResponse.nodes:type_name -> node.NodeResponse
+	14, // 9: node.UpdateNodeRequest.node_query:type_name -> node.NodeNameQuery
+	64, // 10: node.UpdateNodeRequest.last_seen:type_name -> google.protobuf.Timestamp
+	2,  // 11: node.CreateEndpointConfigRequest.asl_key_exchange_method:type_name -> node.AslKeyexchangeMethod
+	21, // 12: node.GetEndpointConfigRequest.endpoint_config_query:type_name -> node.EndpointConfigNameQuery
+	20, // 13: node.ListEndpointConfigsResponse.configs:type_name -> node.EndpointConfig
+	21, // 14: node.UpdateEndpointConfigRequest.endpoint_config_query:type_name -> node.EndpointConfigNameQuery
+	2,  // 15: node.UpdateEndpointConfigRequest.asl_key_exchange_method:type_name -> node.AslKeyexchangeMethod
+	30, // 16: node.GetGroupRequest.group_query:type_name -> node.GroupNameQuery
+	28, // 17: node.GroupResponse.group:type_name -> node.Group
+	20, // 18: node.GroupResponse.primary:type_name -> node.EndpointConfig
+	20, // 19: node.GroupResponse.legacy:type_name -> node.EndpointConfig
+	32, // 20: node.ListGroupsResponse.groups:type_name -> node.GroupResponse
+	30, // 21: node.UpdateGroupRequest.group_query:type_name -> node.GroupNameQuery
+	39, // 22: node.GetHardwareConfigRequest.hardware_config_query:type_name -> node.HardwareConfigNameQuery
+	37, // 23: node.HardwareConfigResponse.hardware_config:type_name -> node.HardwareConfig
+	1,  // 24: node.Proxy.proxy_type:type_name -> node.ProxyType
+	44, // 25: node.ProxyResponse.proxy:type_name -> node.Proxy
+	1,  // 26: node.CreateProxyRequest.proxy_type:type_name -> node.ProxyType
+	47, // 27: node.GetProxyRequest.name_query:type_name -> node.ProxyNameQuery
+	48, // 28: node.GetProxyRequest.serial_query:type_name -> node.ProxySerialQuery
+	44, // 29: node.GetProxyResponse.proxy:type_name -> node.Proxy
+	47, // 30: node.UpdateProxyRequest.name_query:type_name -> node.ProxyNameQuery
+	1,  // 31: node.UpdateProxyRequest.proxy_type:type_name -> node.ProxyType
+	3,  // 32: node.VersionSet.state:type_name -> node.VersionState
+	64, // 33: node.VersionSet.activated_at:type_name -> google.protobuf.Timestamp
+	64, // 34: node.VersionSet.disabled_at:type_name -> google.protobuf.Timestamp
+	63, // 35: node.VersionSet.metadata:type_name -> google.protobuf.Struct
+	63, // 36: node.CreateVersionSetRequest.metadata:type_name -> google.protobuf.Struct
+	53, // 37: node.VersionSetResponse.version_set:type_name -> node.VersionSet
+	3,  // 38: node.ListVersionSetsRequest.state:type_name -> node.VersionState
+	53, // 39: node.ListVersionSetsResponse.version_sets:type_name -> node.VersionSet
+	63, // 40: node.UpdateVersionSetRequest.metadata:type_name -> google.protobuf.Struct
+	13, // 41: node.Southbound.CreateNode:input_type -> node.CreateNodeRequest
+	15, // 42: node.Southbound.GetNode:input_type -> node.GetNodeRequest
+	16, // 43: node.Southbound.ListNodes:input_type -> node.ListNodesRequest
+	18, // 44: node.Southbound.UpdateNode:input_type -> node.UpdateNodeRequest
+	19, // 45: node.Southbound.DeleteNode:input_type -> node.DeleteNodeRequest
+	22, // 46: node.Southbound.CreateEndpointConfig:input_type -> node.CreateEndpointConfigRequest
+	23, // 47: node.Southbound.GetEndpointConfig:input_type -> node.GetEndpointConfigRequest
+	24, // 48: node.Southbound.ListEndpointConfigs:input_type -> node.ListEndpointConfigsRequest
+	26, // 49: node.Southbound.UpdateEndpointConfig:input_type -> node.UpdateEndpointConfigRequest
+	27, // 50: node.Southbound.DeleteEndpointConfig:input_type -> node.DeleteEndpointConfigRequest
+	29, // 51: node.Southbound.CreateGroup:input_type -> node.CreateGroupRequest
+	31, // 52: node.Southbound.GetGroup:input_type -> node.GetGroupRequest
+	33, // 53: node.Southbound.ListGroups:input_type -> node.ListGroupsRequest
+	35, // 54: node.Southbound.UpdateGroup:input_type -> node.UpdateGroupRequest
+	36, // 55: node.Southbound.DeleteGroup:input_type -> node.DeleteGroupRequest
+	38, // 56: node.Southbound.CreateHardwareConfig:input_type -> node.CreateHardwareConfigRequest
+	40, // 57: node.Southbound.GetHardwareConfig:input_type -> node.GetHardwareConfigRequest
+	42, // 58: node.Southbound.UpdateHardwareConfig:input_type -> node.UpdateHardwareConfigRequest
+	43, // 59: node.Southbound.DeleteHardwareConfig:input_type -> node.DeleteHardwareConfigRequest
+	54, // 60: node.Southbound.CreateVersionSet:input_type -> node.CreateVersionSetRequest
+	55, // 61: node.Southbound.GetVersionSet:input_type -> node.GetVersionSetRequest
+	57, // 62: node.Southbound.ListVersionSets:input_type -> node.ListVersionSetsRequest
+	59, // 63: node.Southbound.UpdateVersionSet:input_type -> node.UpdateVersionSetRequest
+	60, // 64: node.Southbound.DeleteVersionSet:input_type -> node.DeleteVersionSetRequest
+	61, // 65: node.Southbound.ActivateVersionSet:input_type -> node.ActivateVersionSetRequest
+	62, // 66: node.Southbound.DisableVersionSet:input_type -> node.DisableVersionSetRequest
+	46, // 67: node.Southbound.CreateProxy:input_type -> node.CreateProxyRequest
+	49, // 68: node.Southbound.GetProxy:input_type -> node.GetProxyRequest
+	51, // 69: node.Southbound.UpdateProxy:input_type -> node.UpdateProxyRequest
+	52, // 70: node.Southbound.DeleteProxy:input_type -> node.DeleteProxyRequest
+	9,  // 71: node.Southbound.ActivateFleet:input_type -> node.ActivateFleetRequest
+	8,  // 72: node.Southbound.ActivateNode:input_type -> node.ActivateNodeRequest
+	4,  // 73: node.Southbound.TriggerCertReq:input_type -> node.TriggerCertReqRequest
+	5,  // 74: node.Southbound.TriggerFleetCertReq:input_type -> node.TriggerFleetCertRequest
+	12, // 75: node.Southbound.CreateNode:output_type -> node.NodeResponse
+	12, // 76: node.Southbound.GetNode:output_type -> node.NodeResponse
+	17, // 77: node.Southbound.ListNodes:output_type -> node.ListNodesResponse
+	65, // 78: node.Southbound.UpdateNode:output_type -> google.protobuf.Empty
+	65, // 79: node.Southbound.DeleteNode:output_type -> google.protobuf.Empty
+	20, // 80: node.Southbound.CreateEndpointConfig:output_type -> node.EndpointConfig
+	20, // 81: node.Southbound.GetEndpointConfig:output_type -> node.EndpointConfig
+	25, // 82: node.Southbound.ListEndpointConfigs:output_type -> node.ListEndpointConfigsResponse
+	65, // 83: node.Southbound.UpdateEndpointConfig:output_type -> google.protobuf.Empty
+	65, // 84: node.Southbound.DeleteEndpointConfig:output_type -> google.protobuf.Empty
+	32, // 85: node.Southbound.CreateGroup:output_type -> node.GroupResponse
+	32, // 86: node.Southbound.GetGroup:output_type -> node.GroupResponse
+	34, // 87: node.Southbound.ListGroups:output_type -> node.ListGroupsResponse
+	65, // 88: node.Southbound.UpdateGroup:output_type -> google.protobuf.Empty
+	65, // 89: node.Southbound.DeleteGroup:output_type -> google.protobuf.Empty
+	41, // 90: node.Southbound.CreateHardwareConfig:output_type -> node.HardwareConfigResponse
+	41, // 91: node.Southbound.GetHardwareConfig:output_type -> node.HardwareConfigResponse
+	65, // 92: node.Southbound.UpdateHardwareConfig:output_type -> google.protobuf.Empty
+	65, // 93: node.Southbound.DeleteHardwareConfig:output_type -> google.protobuf.Empty
+	56, // 94: node.Southbound.CreateVersionSet:output_type -> node.VersionSetResponse
+	56, // 95: node.Southbound.GetVersionSet:output_type -> node.VersionSetResponse
+	58, // 96: node.Southbound.ListVersionSets:output_type -> node.ListVersionSetsResponse
+	65, // 97: node.Southbound.UpdateVersionSet:output_type -> google.protobuf.Empty
+	65, // 98: node.Southbound.DeleteVersionSet:output_type -> google.protobuf.Empty
+	56, // 99: node.Southbound.ActivateVersionSet:output_type -> node.VersionSetResponse
+	56, // 100: node.Southbound.DisableVersionSet:output_type -> node.VersionSetResponse
+	45, // 101: node.Southbound.CreateProxy:output_type -> node.ProxyResponse
+	45, // 102: node.Southbound.GetProxy:output_type -> node.ProxyResponse
+	65, // 103: node.Southbound.UpdateProxy:output_type -> google.protobuf.Empty
+	65, // 104: node.Southbound.DeleteProxy:output_type -> google.protobuf.Empty
+	10, // 105: node.Southbound.ActivateFleet:output_type -> node.ActivateResponse
+	10, // 106: node.Southbound.ActivateNode:output_type -> node.ActivateResponse
+	7,  // 107: node.Southbound.TriggerCertReq:output_type -> node.TriggerCertReqResponse
+	6,  // 108: node.Southbound.TriggerFleetCertReq:output_type -> node.TriggerFleetCertReqResponse
+	75, // [75:109] is the sub-list for method output_type
+	41, // [41:75] is the sub-list for method input_type
+	41, // [41:41] is the sub-list for extension type_name
+	41, // [41:41] is the sub-list for extension extendee
+	0,  // [0:41] is the sub-list for field type_name
 }
 
 func init() { file_node_proto_init() }
@@ -4730,66 +4857,67 @@ func file_node_proto_init() {
 		return
 	}
 	file_node_proto_msgTypes[0].OneofWrappers = []any{}
-	file_node_proto_msgTypes[3].OneofWrappers = []any{}
-	file_node_proto_msgTypes[4].OneofWrappers = []any{}
-	file_node_proto_msgTypes[7].OneofWrappers = []any{}
-	file_node_proto_msgTypes[9].OneofWrappers = []any{
+	file_node_proto_msgTypes[1].OneofWrappers = []any{}
+	file_node_proto_msgTypes[5].OneofWrappers = []any{}
+	file_node_proto_msgTypes[6].OneofWrappers = []any{}
+	file_node_proto_msgTypes[9].OneofWrappers = []any{}
+	file_node_proto_msgTypes[11].OneofWrappers = []any{
 		(*GetNodeRequest_Id)(nil),
 		(*GetNodeRequest_NodeQuery)(nil),
 	}
-	file_node_proto_msgTypes[10].OneofWrappers = []any{}
-	file_node_proto_msgTypes[12].OneofWrappers = []any{
+	file_node_proto_msgTypes[12].OneofWrappers = []any{}
+	file_node_proto_msgTypes[14].OneofWrappers = []any{
 		(*UpdateNodeRequest_Id)(nil),
 		(*UpdateNodeRequest_NodeQuery)(nil),
 	}
-	file_node_proto_msgTypes[14].OneofWrappers = []any{}
 	file_node_proto_msgTypes[16].OneofWrappers = []any{}
-	file_node_proto_msgTypes[17].OneofWrappers = []any{
+	file_node_proto_msgTypes[18].OneofWrappers = []any{}
+	file_node_proto_msgTypes[19].OneofWrappers = []any{
 		(*GetEndpointConfigRequest_Id)(nil),
 		(*GetEndpointConfigRequest_EndpointConfigQuery)(nil),
 	}
-	file_node_proto_msgTypes[18].OneofWrappers = []any{}
-	file_node_proto_msgTypes[20].OneofWrappers = []any{
+	file_node_proto_msgTypes[20].OneofWrappers = []any{}
+	file_node_proto_msgTypes[22].OneofWrappers = []any{
 		(*UpdateEndpointConfigRequest_Id)(nil),
 		(*UpdateEndpointConfigRequest_EndpointConfigQuery)(nil),
 	}
-	file_node_proto_msgTypes[22].OneofWrappers = []any{}
-	file_node_proto_msgTypes[23].OneofWrappers = []any{}
-	file_node_proto_msgTypes[25].OneofWrappers = []any{
+	file_node_proto_msgTypes[24].OneofWrappers = []any{}
+	file_node_proto_msgTypes[25].OneofWrappers = []any{}
+	file_node_proto_msgTypes[27].OneofWrappers = []any{
 		(*GetGroupRequest_Id)(nil),
 		(*GetGroupRequest_GroupQuery)(nil),
 		(*GetGroupRequest_VersionSetId)(nil),
 	}
-	file_node_proto_msgTypes[26].OneofWrappers = []any{}
-	file_node_proto_msgTypes[27].OneofWrappers = []any{}
-	file_node_proto_msgTypes[29].OneofWrappers = []any{
+	file_node_proto_msgTypes[28].OneofWrappers = []any{}
+	file_node_proto_msgTypes[29].OneofWrappers = []any{}
+	file_node_proto_msgTypes[31].OneofWrappers = []any{
 		(*UpdateGroupRequest_Id)(nil),
 		(*UpdateGroupRequest_GroupQuery)(nil),
 	}
-	file_node_proto_msgTypes[34].OneofWrappers = []any{
+	file_node_proto_msgTypes[36].OneofWrappers = []any{
 		(*GetHardwareConfigRequest_Id)(nil),
 		(*GetHardwareConfigRequest_HardwareConfigQuery)(nil),
 		(*GetHardwareConfigRequest_VersionSetId)(nil),
 	}
-	file_node_proto_msgTypes[36].OneofWrappers = []any{}
-	file_node_proto_msgTypes[43].OneofWrappers = []any{
+	file_node_proto_msgTypes[38].OneofWrappers = []any{}
+	file_node_proto_msgTypes[45].OneofWrappers = []any{
 		(*GetProxyRequest_Id)(nil),
 		(*GetProxyRequest_NameQuery)(nil),
 		(*GetProxyRequest_SerialQuery)(nil),
 		(*GetProxyRequest_VersionSetId)(nil),
 	}
-	file_node_proto_msgTypes[45].OneofWrappers = []any{
+	file_node_proto_msgTypes[47].OneofWrappers = []any{
 		(*UpdateProxyRequest_Id)(nil),
 		(*UpdateProxyRequest_NameQuery)(nil),
 	}
-	file_node_proto_msgTypes[51].OneofWrappers = []any{}
+	file_node_proto_msgTypes[53].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_node_proto_rawDesc), len(file_node_proto_rawDesc)),
 			NumEnums:      4,
-			NumMessages:   57,
+			NumMessages:   59,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

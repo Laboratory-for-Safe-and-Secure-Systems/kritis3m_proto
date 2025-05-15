@@ -50,6 +50,7 @@ service Southbound{
   rpc ActivateNode(ActivateNodeRequest) returns (ActivateResponse);
 
   rpc TriggerCertReq(TriggerCertReqRequest) returns (TriggerCertReqResponse);
+  rpc TriggerFleetCertReq(TriggerFleetCertRequest) returns (TriggerFleetCertReqResponse);
 }
 
 enum CertType{
@@ -64,6 +65,17 @@ message TriggerCertReqRequest{
   optional string algo =3;
   optional string alt_algo=4;
 }
+message TriggerFleetCertRequest{
+  string version_set_id = 1;
+  CertType cert_type = 2;
+  optional string algo =3;
+  optional string alt_algo=4;
+}
+
+message TriggerFleetCertReqResponse{
+  int32 retcode = 1;
+}
+
 
 message TriggerCertReqResponse{
   int32 retcode = 1;

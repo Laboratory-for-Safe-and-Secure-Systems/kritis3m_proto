@@ -53,6 +53,7 @@ const (
 	Southbound_ActivateFleet_FullMethodName        = "/node.Southbound/ActivateFleet"
 	Southbound_ActivateNode_FullMethodName         = "/node.Southbound/ActivateNode"
 	Southbound_TriggerCertReq_FullMethodName       = "/node.Southbound/TriggerCertReq"
+	Southbound_TriggerFleetCertReq_FullMethodName  = "/node.Southbound/TriggerFleetCertReq"
 )
 
 // SouthboundClient is the client API for Southbound service.
@@ -92,6 +93,7 @@ type SouthboundClient interface {
 	ActivateFleet(ctx context.Context, in *ActivateFleetRequest, opts ...grpc.CallOption) (*ActivateResponse, error)
 	ActivateNode(ctx context.Context, in *ActivateNodeRequest, opts ...grpc.CallOption) (*ActivateResponse, error)
 	TriggerCertReq(ctx context.Context, in *TriggerCertReqRequest, opts ...grpc.CallOption) (*TriggerCertReqResponse, error)
+	TriggerFleetCertReq(ctx context.Context, in *TriggerFleetCertRequest, opts ...grpc.CallOption) (*TriggerFleetCertReqResponse, error)
 }
 
 type southboundClient struct {
@@ -432,6 +434,16 @@ func (c *southboundClient) TriggerCertReq(ctx context.Context, in *TriggerCertRe
 	return out, nil
 }
 
+func (c *southboundClient) TriggerFleetCertReq(ctx context.Context, in *TriggerFleetCertRequest, opts ...grpc.CallOption) (*TriggerFleetCertReqResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TriggerFleetCertReqResponse)
+	err := c.cc.Invoke(ctx, Southbound_TriggerFleetCertReq_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SouthboundServer is the server API for Southbound service.
 // All implementations must embed UnimplementedSouthboundServer
 // for forward compatibility.
@@ -469,6 +481,7 @@ type SouthboundServer interface {
 	ActivateFleet(context.Context, *ActivateFleetRequest) (*ActivateResponse, error)
 	ActivateNode(context.Context, *ActivateNodeRequest) (*ActivateResponse, error)
 	TriggerCertReq(context.Context, *TriggerCertReqRequest) (*TriggerCertReqResponse, error)
+	TriggerFleetCertReq(context.Context, *TriggerFleetCertRequest) (*TriggerFleetCertReqResponse, error)
 	mustEmbedUnimplementedSouthboundServer()
 }
 
@@ -577,6 +590,9 @@ func (UnimplementedSouthboundServer) ActivateNode(context.Context, *ActivateNode
 }
 func (UnimplementedSouthboundServer) TriggerCertReq(context.Context, *TriggerCertReqRequest) (*TriggerCertReqResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TriggerCertReq not implemented")
+}
+func (UnimplementedSouthboundServer) TriggerFleetCertReq(context.Context, *TriggerFleetCertRequest) (*TriggerFleetCertReqResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TriggerFleetCertReq not implemented")
 }
 func (UnimplementedSouthboundServer) mustEmbedUnimplementedSouthboundServer() {}
 func (UnimplementedSouthboundServer) testEmbeddedByValue()                    {}
@@ -1193,6 +1209,24 @@ func _Southbound_TriggerCertReq_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Southbound_TriggerFleetCertReq_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TriggerFleetCertRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SouthboundServer).TriggerFleetCertReq(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Southbound_TriggerFleetCertReq_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SouthboundServer).TriggerFleetCertReq(ctx, req.(*TriggerFleetCertRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Southbound_ServiceDesc is the grpc.ServiceDesc for Southbound service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1331,6 +1365,10 @@ var Southbound_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "TriggerCertReq",
 			Handler:    _Southbound_TriggerCertReq_Handler,
+		},
+		{
+			MethodName: "TriggerFleetCertReq",
+			Handler:    _Southbound_TriggerFleetCertReq_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
