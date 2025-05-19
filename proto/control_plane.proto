@@ -60,8 +60,9 @@ message UpdateResponse{
 message FleetResponse{
     UpdateState update_state = 1;
     google.protobuf.Timestamp timestamp = 2;
-    string meta = 3;
+    optional string meta = 3;
     int32 tx_id = 4;
+    string serial_number = 5;
 }
 
 enum UpdateState{

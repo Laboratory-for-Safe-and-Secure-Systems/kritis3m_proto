@@ -542,8 +542,9 @@ type FleetResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UpdateState   UpdateState            `protobuf:"varint,1,opt,name=update_state,json=updateState,proto3,enum=control_service.UpdateState" json:"update_state,omitempty"`
 	Timestamp     *timestamp.Timestamp   `protobuf:"bytes,2,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
-	Meta          string                 `protobuf:"bytes,3,opt,name=meta,proto3" json:"meta,omitempty"`
+	Meta          *string                `protobuf:"bytes,3,opt,name=meta,proto3,oneof" json:"meta,omitempty"`
 	TxId          int32                  `protobuf:"varint,4,opt,name=tx_id,json=txId,proto3" json:"tx_id,omitempty"`
+	SerialNumber  string                 `protobuf:"bytes,5,opt,name=serial_number,json=serialNumber,proto3" json:"serial_number,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -593,8 +594,8 @@ func (x *FleetResponse) GetTimestamp() *timestamp.Timestamp {
 }
 
 func (x *FleetResponse) GetMeta() string {
-	if x != nil {
-		return x.Meta
+	if x != nil && x.Meta != nil {
+		return *x.Meta
 	}
 	return ""
 }
@@ -604,6 +605,13 @@ func (x *FleetResponse) GetTxId() int32 {
 		return x.TxId
 	}
 	return 0
+}
+
+func (x *FleetResponse) GetSerialNumber() string {
+	if x != nil {
+		return x.SerialNumber
+	}
+	return ""
 }
 
 type CertificateRequest struct {
@@ -895,12 +903,14 @@ const file_control_plane_proto_rawDesc = "" +
 	"\ttimestamp\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\ttimestamp\x12+\n" +
 	"\x04meta\x18\x03 \x01(\v2\x17.google.protobuf.StructR\x04meta\x12\x13\n" +
 	"\x05tx_id\x18\x04 \x01(\x05R\x04txId\x12\x17\n" +
-	"\anode_id\x18\x05 \x01(\tR\x06nodeId\"\xb3\x01\n" +
+	"\anode_id\x18\x05 \x01(\tR\x06nodeId\"\xe6\x01\n" +
 	"\rFleetResponse\x12?\n" +
 	"\fupdate_state\x18\x01 \x01(\x0e2\x1c.control_service.UpdateStateR\vupdateState\x128\n" +
-	"\ttimestamp\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\ttimestamp\x12\x12\n" +
-	"\x04meta\x18\x03 \x01(\tR\x04meta\x12\x13\n" +
-	"\x05tx_id\x18\x04 \x01(\x05R\x04txId\"\xff\x01\n" +
+	"\ttimestamp\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\ttimestamp\x12\x17\n" +
+	"\x04meta\x18\x03 \x01(\tH\x00R\x04meta\x88\x01\x01\x12\x13\n" +
+	"\x05tx_id\x18\x04 \x01(\x05R\x04txId\x12#\n" +
+	"\rserial_number\x18\x05 \x01(\tR\fserialNumberB\a\n" +
+	"\x05_meta\"\xff\x01\n" +
 	"\x12CertificateRequest\x12#\n" +
 	"\rserial_number\x18\x01 \x01(\tR\fserialNumber\x12+\n" +
 	"\tcert_type\x18\x02 \x01(\x0e2\x0e.node.CertTypeR\bcertType\x12\x1b\n" +
@@ -1014,6 +1024,7 @@ func file_control_plane_proto_init() {
 		return
 	}
 	file_control_plane_proto_msgTypes[4].OneofWrappers = []any{}
+	file_control_plane_proto_msgTypes[7].OneofWrappers = []any{}
 	file_control_plane_proto_msgTypes[8].OneofWrappers = []any{}
 	file_control_plane_proto_msgTypes[11].OneofWrappers = []any{}
 	type x struct{}
